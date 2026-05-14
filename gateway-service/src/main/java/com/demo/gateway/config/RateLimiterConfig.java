@@ -3,6 +3,7 @@ package com.demo.gateway.config;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import reactor.core.publisher.Mono;
 
 /**
@@ -22,6 +23,7 @@ public class RateLimiterConfig {
      * Extracted by the JwtAuthenticationFilter and set as a request attribute.
      * Falls back to "anonymous" if no user info is present.
      */
+    @Primary
     @Bean
     public KeyResolver userKeyResolver() {
         return exchange -> {

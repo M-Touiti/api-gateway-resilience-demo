@@ -2,7 +2,6 @@ package com.demo.gateway.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
@@ -10,6 +9,7 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.*;
@@ -36,10 +36,13 @@ public class GatewayErrorHandler extends DefaultErrorWebExceptionHandler {
 
     public GatewayErrorHandler(ErrorAttributes errorAttributes,
                                 WebProperties webProperties,
-                                ApplicationContext applicationContext) {
+                                ApplicationContext applicationContext,
+                                ServerCodecConfigurer codecConfigurer) {
         super(errorAttributes, webProperties.getResources(),
                 new org.springframework.boot.autoconfigure.web.ErrorProperties(),
                 applicationContext);
+        setMessageWriters(codecConfigurer.getWriters());
+        setMessageReaders(codecConfigurer.getReaders());
     }
 
     @Override
@@ -47,7 +50,8 @@ public class GatewayErrorHandler extends DefaultErrorWebExceptionHandler {
         return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
     }
 
-    private Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
+    @Override
+    protected Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
         Map<String, Object> errorAttributes = getErrorAttributes(request,
                 ErrorAttributeOptions.defaults());
 
@@ -59,9 +63,8 @@ public class GatewayErrorHandler extends DefaultErrorWebExceptionHandler {
 
         Map<String, Object> body = new HashMap<>();
         body.put("status", statusCode);
-        body.put("error", HttpStatus.resolve(statusCode) != null
-                ? HttpStatus.resolve(statusCode).getReasonPhrase()
-                : "Error");
+        HttpStatus httpStatus = HttpStatus.resolve(statusCode);
+        body.put("error", httpStatus != null ? httpStatus.getReasonPhrase() : "Error");
         body.put("message", message);
         body.put("path", path);
         body.put("timestamp", Instant.now().toString());

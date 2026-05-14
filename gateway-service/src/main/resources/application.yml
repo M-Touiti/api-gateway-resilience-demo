@@ -48,7 +48,6 @@ spring:
                   maxBackoff: 500ms
                   factor: 2
             - AddRequestHeader=X-Gateway-Source, api-gateway
-            - AddResponseHeader=X-Response-Time, ${System.currentTimeMillis()}
 
         # ── USER SERVICE — protected routes (JWT required) ─────────────
         - id: user-service-protected

@@ -108,7 +108,7 @@ Attempt 1 ─── fail ─► wait 200ms ─► Attempt 2 ─── fail ─�
 
 ## Tech Stack
 
-- **Java 17** — Records, modern idioms
+- **Java 21** — Records, modern idioms
 - **Spring Cloud Gateway 4.x** — Reactive (WebFlux) API gateway
 - **Spring Cloud Circuit Breaker + Resilience4j** — Reactive circuit breaker, retry, bulkhead
 - **Spring Data Redis Reactive** — Distributed rate limiting
@@ -122,7 +122,7 @@ Attempt 1 ─── fail ─► wait 200ms ─► Attempt 2 ─── fail ─�
 ## Getting Started
 
 ### Prerequisites
-- Java 17+
+- Java 21+
 - Docker & Docker Compose
 
 ### Run the full stack
@@ -133,7 +133,7 @@ git clone https://github.com/your-username/api-gateway-resilience-demo.git
 cd api-gateway-resilience-demo
 
 # 2. Build all services
-./mvnw clean package -DskipTests
+mvn clean package -DskipTests
 
 # 3. Start everything (Redis + 2 services + gateway)
 docker-compose up -d
@@ -151,10 +151,10 @@ curl http://localhost:8080/actuator/health
 
 ```bash
 # Unit tests (JwtUtil — no infrastructure)
-./mvnw test -pl gateway-service -Dtest="**/unit/**"
+mvn test -pl gateway-service -Dtest="**/unit/**"
 
 # Integration tests (WireMock — no real services needed)
-./mvnw test -pl gateway-service -Dtest="**/integration/**"
+mvn test -pl gateway-service -Dtest="**/integration/**"
 ```
 
 ---

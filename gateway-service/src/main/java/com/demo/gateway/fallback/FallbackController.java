@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
@@ -29,20 +28,20 @@ public class FallbackController {
 
     private static final Logger log = LoggerFactory.getLogger(FallbackController.class);
 
-    @GetMapping("/user-service")
+    @RequestMapping("/user-service")
     public Mono<ResponseEntity<Map<String, Object>>> userServiceFallback(ServerWebExchange exchange) {
         return buildFallback(exchange, "user-service",
                 "User service is temporarily unavailable. Please try again in a moment.");
     }
 
-    @GetMapping("/payment-service")
+    @RequestMapping("/payment-service")
     public Mono<ResponseEntity<Map<String, Object>>> paymentServiceFallback(ServerWebExchange exchange) {
         return buildFallback(exchange, "payment-service",
                 "Payment service is temporarily unavailable. Your request has not been processed. " +
                         "Please try again or contact support.");
     }
 
-    @GetMapping("/default")
+    @RequestMapping("/default")
     public Mono<ResponseEntity<Map<String, Object>>> defaultFallback(ServerWebExchange exchange) {
         return buildFallback(exchange, "unknown",
                 "The requested service is temporarily unavailable. Please try again later.");
