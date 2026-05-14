@@ -1,0 +1,200 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  # Redis for distributed rate limiting
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+
+  cloud:
+    gateway:
+      # ─────────────────────────────────────────────────────────────────
+      # ROUTES
+      # Each route defines: predicates (matching rules), filters, and
+      # resilience patterns (rate limit, circuit breaker, retry).
+      # ─────────────────────────────────────────────────────────────────
+      routes:
+
+        # ── USER SERVICE — public auth routes (no JWT required) ────────
+        - id: user-service-auth
+          uri: ${USER_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/v1/auth/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 20       # 20 req/s per IP
+                redis-rate-limiter.burstCapacity: 40       # burst up to 40
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@ipKeyResolver}"
+            - name: CircuitBreaker
+              args:
+                name: user-service-auth-cb
+                fallbackUri: forward:/fallback/user-service
+            - name: Retry
+              args:
+                retries: 2
+                statuses: BAD_GATEWAY,SERVICE_UNAVAILABLE
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 100ms
+                  maxBackoff: 500ms
+                  factor: 2
+            - AddRequestHeader=X-Gateway-Source, api-gateway
+            - AddResponseHeader=X-Response-Time, ${System.currentTimeMillis()}
+
+        # ── USER SERVICE — protected routes (JWT required) ─────────────
+        - id: user-service-protected
+          uri: ${USER_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/v1/users/**
+          filters:
+            - name: JwtAuthentication          # custom filter — validates JWT
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 50       # 50 req/s per user
+                redis-rate-limiter.burstCapacity: 100
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@userKeyResolver}"
+            - name: CircuitBreaker
+              args:
+                name: user-service-cb
+                fallbackUri: forward:/fallback/user-service
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT
+                methods: GET
+                backoff:
+                  firstBackoff: 200ms
+                  maxBackoff: 1000ms
+                  factor: 2
+            - AddRequestHeader=X-Gateway-Source, api-gateway
+            - StripPrefix=0
+
+        # ── PAYMENT SERVICE — protected routes (JWT + strict limits) ───
+        - id: payment-service
+          uri: ${PAYMENT_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/v1/payments/**
+          filters:
+            - name: JwtAuthentication
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10       # stricter: 10 req/s per user
+                redis-rate-limiter.burstCapacity: 20       # payment is sensitive — lower burst
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@userKeyResolver}"
+            - name: CircuitBreaker
+              args:
+                name: payment-service-cb                   # uses stricter config (30% threshold)
+                fallbackUri: forward:/fallback/payment-service
+            - name: Retry
+              args:
+                retries: 1                                 # only 1 retry for payment (idempotency)
+                statuses: BAD_GATEWAY,GATEWAY_TIMEOUT
+                methods: GET                               # never retry POST for payment
+                backoff:
+                  firstBackoff: 500ms
+                  maxBackoff: 500ms
+                  factor: 1
+            - AddRequestHeader=X-Gateway-Source, api-gateway
+
+      # Global CORS configuration
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"
+              - "${FRONTEND_URL:http://localhost:3000}"
+            allowedMethods: ["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
+            allowedHeaders: ["*"]
+            exposedHeaders: ["X-Total-Count","X-Rate-Limit-Remaining"]
+            maxAge: 3600
+
+      # Default filters applied to all routes
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+
+# ─────────────────────────────────────────────────────────────────
+# RESILIENCE4J
+# ─────────────────────────────────────────────────────────────────
+resilience4j:
+  circuitbreaker:
+    instances:
+      user-service-auth-cb:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+      user-service-cb:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+      payment-service-cb:
+        slidingWindowSize: 10
+        failureRateThreshold: 30           # payment: stricter
+        waitDurationInOpenState: 30s       # payment: longer recovery
+        permittedNumberOfCallsInHalfOpenState: 2
+        registerHealthIndicator: true
+
+  timelimiter:
+    instances:
+      user-service-auth-cb:
+        timeoutDuration: 5s
+      user-service-cb:
+        timeoutDuration: 5s
+      payment-service-cb:
+        timeoutDuration: 8s                # payment may take longer
+
+  retry:
+    instances:
+      user-service-cb:
+        maxAttempts: 3
+        waitDuration: 200ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+
+# ─────────────────────────────────────────────────────────────────
+# JWT
+# ─────────────────────────────────────────────────────────────────
+app:
+  jwt:
+    secret: ${JWT_SECRET:my-very-secret-key-that-is-at-least-256-bits-long-for-hs256}
+
+# ─────────────────────────────────────────────────────────────────
+# ACTUATOR — expose circuit breaker states + metrics
+# ─────────────────────────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,circuitbreakers,gateway
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+  health:
+    circuitbreakers:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
+logging:
+  level:
+    com.demo.gateway: INFO
+    org.springframework.cloud.gateway: INFO
+    io.github.resilience4j: INFO
