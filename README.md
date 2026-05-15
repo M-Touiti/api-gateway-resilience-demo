@@ -63,6 +63,125 @@ Built as a project to showcase enterprise-grade distributed systems design appli
 
 ---
 
+## Request Flow: End-to-End
+
+Here is exactly what happens when you call `GET /api/v1/users/me` — traced through the actual code and config.
+
+### 1. Route matching (`application.yml`)
+
+Spring Cloud Gateway reads `application.yml` at startup and registers routes. When a request arrives at `:8080`, it matches the first route whose predicate passes:
+
+```yaml
+- id: user-service-protected
+  uri: ${USER_SERVICE_URL:http://user-service:8081}   # where to forward
+  predicates:
+    - Path=/api/v1/users/**                            # match condition
+  filters:
+    - name: JwtAuthentication
+    - name: RequestRateLimiter
+      args:
+        key-resolver: "#{@userKeyResolver}"
+    - name: CircuitBreaker
+      args:
+        name: user-service-cb
+        fallbackUri: forward:/fallback/user-service
+    - name: Retry
+      ...
+```
+
+Each `name:` entry maps to a `GatewayFilterFactory` bean. Spring Cloud Gateway resolves `JwtAuthentication` → `JwtAuthenticationGatewayFilterFactory`, `CircuitBreaker` → `SpringCloudCircuitBreakerFilterFactory`, etc.
+
+### 2. Filter chain execution
+
+The gateway combines global filters (always active) and route-specific filters into one ordered chain. Your request passes through each layer:
+
+```
+GET /api/v1/users/me  →  localhost:8080
+        │
+        ▼
+RequestLoggingFilter          [GlobalFilter] logs method, path, start time
+        │
+        ▼
+JwtAuthenticationGatewayFilterFactory  [per-route]
+        │  reads Authorization: Bearer <token>
+        │  calls JwtUtil.isValid() → verifies HMAC-SHA256 signature
+        │  extracts email + role from claims
+        │  mutates request: adds X-User-Email, X-User-Role, removes Authorization
+        │  stores userEmail as exchange attribute (used by rate limiter below)
+        │
+        ▼
+RequestRateLimiterGatewayFilterFactory  [per-route]
+        │  calls userKeyResolver → exchange.getAttribute("userEmail") → "user@example.com"
+        │  calls RedisRateLimiter.isAllowed("user-service-protected", "user@example.com")
+        │    → runs Lua script on Redis atomically
+        │    → checks/decrements token bucket stored at key:
+        │       request_rate_limiter.{user-service-protected}.{user@example.com}.tokens
+        │  if allowed → continue; if not → return 429
+        │
+        ▼
+SpringCloudCircuitBreakerFilterFactory  [per-route]
+        │  wraps everything below in: circuitBreaker.run(chain.filter(exchange), fallback)
+        │  if circuit is OPEN → calls fallback immediately (no downstream call)
+        │  if downstream throws IOException/TimeoutException → calls fallback
+        │
+        ▼
+RetryGatewayFilterFactory  [per-route]
+        │  wraps the HTTP call in retryWhen()
+        │  retries up to 3× on 502/503/504, with exponential backoff
+        │
+        ▼
+NettyRoutingFilter  [GlobalFilter] makes the actual HTTP call
+        │  connects to http://user-service:8081 (Docker internal DNS)
+        │  forwards mutated request (with X-User-Email, X-User-Role headers)
+        │
+        ▼
+user-service  :8081
+        │  reads X-User-Email from header (no JWT validation — gateway already did it)
+        │  returns 200 {"email":"user@example.com","role":"USER",...}
+        │
+        ▼  (response flows back up the chain)
+RequestLoggingFilter logs status + latency
+        │
+        ▼
+200 response → caller
+```
+
+### 3. How Redis connects
+
+`RedisRateLimiter` executes a Lua script atomically against Redis. The connection is configured via environment variables passed through Docker Compose:
+
+```yaml
+# docker-compose.yml
+gateway-service:
+  environment:
+    REDIS_HOST: redis   # Docker service name → resolves to redis container IP
+    REDIS_PORT: 6379
+```
+
+```yaml
+# application.yml
+spring.data.redis.host: ${REDIS_HOST:localhost}
+spring.data.redis.port: ${REDIS_PORT:6379}
+```
+
+If Redis is unreachable, `RedisRateLimiter` catches the error and **fails open** (allows all requests through) to avoid a Redis outage taking down the entire gateway.
+
+### 4. Docker networking
+
+The client always calls the **gateway on port 8080**. The gateway forwards internally to `user-service:8081` using Docker's built-in DNS — `user-service` resolves to the container's internal IP, unreachable from outside Docker.
+
+```
+You ──► localhost:8080 (gateway, public)
+              │
+              └──► user-service:8081 (internal Docker network only)
+              └──► payment-service:8082 (internal Docker network only)
+              └──► redis:6379 (internal Docker network only)
+```
+
+> **Note:** In this demo, `user-service` and `payment-service` also expose ports `8081`/`8082` to the host for convenience, meaning you can call them directly and bypass the gateway entirely. In production, remove those `ports:` mappings so only the gateway is publicly accessible.
+
+---
+
 ## Resilience Patterns
 
 ### 1. Circuit Breaker (Resilience4j)
@@ -129,7 +248,7 @@ Attempt 1 ─── fail ─► wait 200ms ─► Attempt 2 ─── fail ─�
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/api-gateway-resilience-demo.git
+git clone https://github.com/M-Touiti/api-gateway-resilience-demo.git
 cd api-gateway-resilience-demo
 
 # 2. Build all services
