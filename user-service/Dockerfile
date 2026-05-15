@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine AS builder
+FROM maven:3.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN mvn clean package -pl user-service -am -DskipTests
@@ -6,5 +6,5 @@ RUN mvn clean package -pl user-service -am -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=builder /app/user-service/target/*.jar app.jar
-EXPOSE $(grep 'port:' user-service/src/main/resources/application.yml | head -1 | awk '{print $2}')
+EXPOSE 8081
 ENTRYPOINT ["java","-jar","app.jar"]
