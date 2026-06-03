@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * User service REST controller.
@@ -20,6 +21,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
+
+    private final AtomicInteger flakyCounter = new AtomicInteger(0);
 
     /**
      * GET /api/v1/users/me
@@ -104,5 +107,21 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> errorEndpoint() {
         return ResponseEntity.status(500)
                 .body(Map.of("error", "Simulated internal server error"));
+    }
+
+    /**
+     * POST /api/v1/auth/flaky — fails with 503 on the first 2 calls, succeeds on the 3rd.
+     * Resets every 3 calls. Use this to observe the gateway Retry filter in action:
+     * retries=2 means the gateway makes up to 3 upstream attempts before giving up.
+     */
+    @PostMapping("/auth/flaky")
+    public ResponseEntity<Map<String, Object>> flakyEndpoint() {
+        int attempt = flakyCounter.incrementAndGet();
+        System.out.printf("[flaky] upstream call #%d%n", attempt);
+        if (attempt % 3 != 0) {
+            return ResponseEntity.status(503)
+                    .body(Map.of("error", "Simulated failure", "attempt", attempt));
+        }
+        return ResponseEntity.ok(Map.of("message", "Success after retries", "attempt", attempt));
     }
 }

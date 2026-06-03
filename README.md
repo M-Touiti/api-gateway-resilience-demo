@@ -23,7 +23,7 @@ graph TD
         F2["② JwtAuthentication<br/>validates Bearer token · injects X-User-Email, X-User-Role"]
         F3["③ RedisRateLimiter<br/>token bucket per user (50/10 req/s) or per IP (20 req/s)"]
         F4["④ CircuitBreaker — Resilience4j<br/>CLOSED → OPEN at 50% failure (30% for payments)"]
-        F5["⑤ Retry<br/>exponential backoff · 502/503/504 · GET only · max 3 attempts"]
+        F5["⑤ Retry<br/>exponential backoff · 502/503 · GET+POST (auth), GET only (payments) · max 3 attempts"]
         F1 --> F2 --> F3 --> F4 --> F5
     end
 
@@ -194,7 +194,7 @@ Returns `429 Too Many Requests` with `X-RateLimit-*` headers when exceeded.
 ### 3. Retry with Exponential Backoff
 
 ```
-Attempt 1 ─── fail ─► wait 200ms ─► Attempt 2 ─── fail ─► wait 400ms ─► Attempt 3
+Attempt 1 ─── fail ─► wait 100ms ─► Attempt 2 ─── fail ─► wait 200ms ─► Attempt 3
 ```
 
 - Only retries on `502 Bad Gateway`, `503 Service Unavailable`, `504 Gateway Timeout`
@@ -313,37 +313,51 @@ POST  /api/v1/payments          → payment-service (no retry)
 ### Test the Circuit Breaker (payment-service)
 
 ```bash
-# 1. Generate a JWT (use the login endpoint)
-TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@test.com","password":"pass"}' | jq -r .accessToken)
+# 1. Generate a signed JWT (Python stdlib — no pip install needed)
+TOKEN=$(python3 -c "
+import hmac, hashlib, base64, json, time
+def b64url(d):
+    if isinstance(d, str): d = d.encode()
+    return base64.urlsafe_b64encode(d).rstrip(b'=').decode()
+s = 'my-very-secret-key-that-is-at-least-256-bits-long-for-hs256'
+h = b64url(json.dumps({'alg':'HS256','typ':'JWT'}))
+p = b64url(json.dumps({'sub':'test@test.com','role':'USER','iat':int(time.time()),'exp':int(time.time())+86400}))
+m = f'{h}.{p}'
+print(f'{m}.{b64url(hmac.new(s.encode(), m.encode(), hashlib.sha256).digest())}')
+")
 
-# 2. Trigger failures to open the circuit (30% threshold = 3/10 calls)
-for i in {1..5}; do
-  curl -s http://localhost:8080/api/v1/payments/error \
-    -H "Authorization: Bearer $TOKEN"
+# 2. Fill sliding window with 7 successes, then 3 slow requests in parallel
+#    /payments/slow sleeps 10s — gateway timelimiter fires at 8s = TimeoutException = CB failure
+#    3 failures / 10 calls = 30% threshold → circuit OPENS
+for i in $(seq 1 7); do
+  curl -s -o /dev/null -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/v1/payments
 done
+for i in $(seq 1 3); do
+  curl -s -o /dev/null -w "slow $i: %{http_code}\n" \
+    -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/v1/payments/slow &
+done
+wait
 
-# 3. Observe circuit is now OPEN — fallback is returned immediately
-curl http://localhost:8080/api/v1/payments \
-  -H "Authorization: Bearer $TOKEN"
-# → {"status":503,"message":"Payment service is temporarily unavailable..."}
+# 3. Observe circuit is now OPEN — fallback returned instantly (no downstream call)
+curl -s -w "\nstatus=%{http_code}  latency=%{time_total}s\n" \
+  -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/v1/payments
 
 # 4. Check circuit state via Actuator
-curl http://localhost:8080/actuator/circuitbreakers | jq .
+curl -s http://localhost:8080/actuator/health | python3 -m json.tool | grep -A 5 "payment-service-cb"
 ```
 
 ### Test Rate Limiting
 
 ```bash
-# Hammer the auth endpoint — observe 429 after 40 requests
-for i in {1..50}; do
+# Fire 50 requests in parallel — burst capacity is 40, so requests 41-50 get 429
+for i in $(seq 1 50); do
   curl -o /dev/null -s -w "%{http_code}\n" \
     -X POST http://localhost:8080/api/v1/auth/login \
     -H "Content-Type: application/json" \
-    -d '{"email":"test@test.com","password":"pass"}'
+    -d '{"email":"test@test.com","password":"pass"}' &
 done
-# → 200 200 ... 429 429 429
+wait
+# → 40× 200, 10× 429
 ```
 
 ### Test Timeout + Fallback
