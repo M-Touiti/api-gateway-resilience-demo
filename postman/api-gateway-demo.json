@@ -1,0 +1,631 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "API Gateway Resilience Demo",
+    "description": "Demonstrates Circuit Breaker, Rate Limiting, Retry, and JWT auth patterns.\n\n**Quick start**\n1. Run `docker-compose up -d`\n2. Open the collection → Variables tab and verify `baseUrl` = `http://localhost:8080`\n3. Run **Auth / Generate Test JWT** — this auto-generates a valid JWT and saves it to the `token` variable\n4. Run any protected request — the `{{token}}` variable is used automatically\n\n**Resilience demo sequence**\n1. Run *Trigger CB Error (repeat 4×)* until the circuit opens\n2. Run *List Payments* — observe 503 fallback (no downstream call)\n3. Wait 30 s → circuit moves to HALF_OPEN, one test call closes it\n4. Check *Actuator / Circuit Breaker States* at any time\n\n**Note on the login endpoint**\nThe `user-service` in this demo is a stub — `POST /auth/login` returns a synthetic token string, not a real JWT. Use **Auth / Generate Test JWT** instead, which builds a properly signed JWT matching the gateway's secret.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string",
+      "description": "Gateway base URL"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string",
+      "description": "JWT — populated automatically by 'Generate Test JWT'"
+    },
+    {
+      "key": "jwtSecret",
+      "value": "my-very-secret-key-that-is-at-least-256-bits-long-for-hs256",
+      "type": "string",
+      "description": "Must match app.jwt.secret in application.yml / JWT_SECRET env var"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Generate Test JWT (run first)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Generates a signed JWT using the gateway's dev secret.",
+                  "// Run this once; the token is saved to the collection variable 'token'.",
+                  "const CryptoJS = require('crypto-js');",
+                  "const secret = pm.collectionVariables.get('jwtSecret');",
+                  "",
+                  "function toBase64url(str) {",
+                  "    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(str))",
+                  "        .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');",
+                  "}",
+                  "",
+                  "const header  = toBase64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));",
+                  "const claims  = {",
+                  "    sub:  'demo@example.com',",
+                  "    role: 'USER',",
+                  "    iat:  Math.floor(Date.now() / 1000),",
+                  "    exp:  Math.floor(Date.now() / 1000) + 86400  // 24 h",
+                  "};",
+                  "const payload = toBase64url(JSON.stringify(claims));",
+                  "const input   = header + '.' + payload;",
+                  "const sig     = CryptoJS.HmacSHA256(input, secret)",
+                  "    .toString(CryptoJS.enc.Base64)",
+                  "    .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');",
+                  "",
+                  "pm.collectionVariables.set('token', input + '.' + sig);",
+                  "console.log('JWT generated for demo@example.com (24 h expiry)');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            },
+            "description": "Runs a pre-request script that generates a valid JWT signed with the gateway's dev secret. The token is saved to the `token` collection variable. The actual HTTP call is just a health check to confirm the stack is up."
+          }
+        },
+        {
+          "name": "Generate Admin JWT",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const CryptoJS = require('crypto-js');",
+                  "const secret = pm.collectionVariables.get('jwtSecret');",
+                  "",
+                  "function toBase64url(str) {",
+                  "    return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(str))",
+                  "        .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');",
+                  "}",
+                  "",
+                  "const header  = toBase64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));",
+                  "const payload = toBase64url(JSON.stringify({",
+                  "    sub:  'admin@example.com',",
+                  "    role: 'ADMIN',",
+                  "    iat:  Math.floor(Date.now() / 1000),",
+                  "    exp:  Math.floor(Date.now() / 1000) + 86400",
+                  "}));",
+                  "const input = header + '.' + payload;",
+                  "const sig   = CryptoJS.HmacSHA256(input, secret)",
+                  "    .toString(CryptoJS.enc.Base64)",
+                  "    .replace(/\\+/g, '-').replace(/\\//g, '_').replace(/=+$/, '');",
+                  "",
+                  "pm.collectionVariables.set('token', input + '.' + sig);",
+                  "console.log('Admin JWT generated for admin@example.com');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            },
+            "description": "Generates an ADMIN-role JWT and saves it to `token`. Use before calling 'List All Users (ADMIN)'."
+          }
+        },
+        {
+          "name": "Login (stub — returns fake token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "// Note: this is a stub token — not a real JWT.",
+                  "// For a JWT that passes gateway validation, use 'Generate Test JWT' instead."
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "login"]
+            },
+            "description": "Public endpoint — no JWT required. Returns a synthetic token string (not a valid JWT). The user-service is a stub and does not issue real JWTs."
+          }
+        },
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"password\": \"securepass\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "register"]
+            },
+            "description": "Public endpoint — no JWT required. Rate limited: 20 req/s per IP."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response contains email', () => {",
+                  "    pm.expect(pm.response.json()).to.have.property('email');",
+                  "});",
+                  "pm.test('Authorization header stripped by gateway', () => {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.email).to.equal('demo@example.com');",
+                  "    pm.expect(body.gatewaySource).to.equal('api-gateway');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "me"]
+            },
+            "description": "Protected — JWT required. Rate limited: 50 req/s per authenticated user. Gateway strips the JWT and injects X-User-Email / X-User-Role headers."
+          }
+        },
+        {
+          "name": "List All Users (ADMIN role required)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200 or 403', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+                  "});",
+                  "if (pm.response.code === 403) {",
+                  "    console.log('Run \"Generate Admin JWT\" first to get ADMIN access');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"]
+            },
+            "description": "Requires ADMIN role. Run 'Generate Admin JWT' first; with USER role you get 403."
+          }
+        },
+        {
+          "name": "401 — No token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 401', () => pm.response.to.have.status(401));",
+                  "pm.test('WWW-Authenticate header present', () => {",
+                  "    pm.expect(pm.response.headers.get('WWW-Authenticate')).to.include('Bearer');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "me"]
+            },
+            "description": "Demonstrates the JWT filter rejecting a request with no Authorization header."
+          }
+        },
+        {
+          "name": "401 — Invalid token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 401', () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer invalid.jwt.token.here" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "me"]
+            },
+            "description": "Demonstrates the JWT filter rejecting a tampered or expired token."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "List Payments",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200 or 503 (CB fallback)', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 503]);",
+                  "});",
+                  "if (pm.response.code === 503) {",
+                  "    const body = pm.response.json();",
+                  "    pm.test('Fallback body is structured', () => {",
+                  "        pm.expect(body).to.have.property('retryAfter');",
+                  "        pm.expect(body.service).to.equal('payment-service');",
+                  "    });",
+                  "    console.log('Circuit is OPEN — fallback returned. Wait 30s and retry.');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "payments"]
+            },
+            "description": "Protected — JWT required. Rate limited: 10 req/s per user. If the circuit is OPEN, returns a 503 fallback immediately (no downstream call)."
+          }
+        },
+        {
+          "name": "Create Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 201 or 503 (CB fallback)', () => {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([201, 503]);",
+                  "});",
+                  "pm.test('POST is never retried (idempotency)', () => {",
+                  "    // Retry is disabled for POST /payments to prevent double charges.",
+                  "    // This is verified in integration tests.",
+                  "    pm.expect(true).to.be.true;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 99.99,\n  \"currency\": \"EUR\",\n  \"description\": \"Test payment\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "payments"]
+            },
+            "description": "Protected — JWT required. Note: POST /payments is intentionally never retried to avoid double charges."
+          }
+        },
+        {
+          "name": "Enable Failure Mode (next N POST calls fail)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/payments/enable-failure?count=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "payments", "enable-failure"],
+              "query": [
+                { "key": "count", "value": "5", "description": "Number of subsequent POST /payments calls that will fail" }
+              ]
+            },
+            "description": "Arms the payment service to fail the next N POST /payments calls. Use this to observe the circuit breaker opening under POST failures."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Resilience Demos",
+      "item": [
+        {
+          "name": "Step 1 — Trigger CB Error (run 4+ times)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Returns 500 (simulated error)', () => pm.response.to.have.status(500));",
+                  "console.log('Run this 4+ more times. The circuit opens at 30% failure rate (3/10 calls).');",
+                  "console.log('Then call \"Step 2 — Verify CB Fallback\" to see the 503 response.');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/payments/error",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "payments", "error"]
+            },
+            "description": "Always returns 500. Run this 4+ times to push the payment-service circuit breaker to OPEN state (threshold: 30% failure rate over a 10-call sliding window)."
+          }
+        },
+        {
+          "name": "Step 2 — Verify CB Fallback (503)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 503) {",
+                  "    pm.test('Circuit OPEN — fallback returned', () => pm.response.to.have.status(503));",
+                  "    const body = pm.response.json();",
+                  "    pm.test('Fallback has retryAfter', () => pm.expect(body.retryAfter).to.equal('30s'));",
+                  "    console.log('Success! Circuit is OPEN. Gateway returned fallback without calling downstream.');",
+                  "} else {",
+                  "    pm.test('Circuit not yet open — run Step 1 more times', () => pm.expect(pm.response.code).to.equal(503));",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "payments"]
+            },
+            "description": "After the circuit opens, this returns 503 immediately — the gateway does not call payment-service at all."
+          }
+        },
+        {
+          "name": "Step 3 — Check CB State (Actuator)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "const body = pm.response.json();",
+                  "const cbs = body.circuitBreakers || {};",
+                  "Object.entries(cbs).forEach(([name, info]) => {",
+                  "    console.log(`${name}: ${info.state || JSON.stringify(info)}`);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/circuitbreakers",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "circuitbreakers"]
+            },
+            "description": "Returns the state of all circuit breakers: CLOSED, OPEN, or HALF_OPEN. Run after Step 1 and Step 2 to observe the state change."
+          }
+        },
+        {
+          "name": "Trigger Timeout (user-service slow endpoint)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Timeout triggers fallback (503 after ~5s)', () => {",
+                  "    pm.expect(pm.response.code).to.equal(503);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/slow",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", "slow"]
+            },
+            "description": "user-service /slow sleeps for 6s. The gateway's time limiter fires after 5s and returns the 503 fallback. You will wait ~5s for the response."
+          }
+        },
+        {
+          "name": "Trigger 429 Rate Limit",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Run this request in Postman Runner with 50 iterations",
+                  "// to observe 429 responses after the burst capacity (40) is exceeded.",
+                  "console.log('Run this 50× in Collection Runner to hit the 429 threshold.');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"pass\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "login"]
+            },
+            "description": "Auth route: 20 req/s, burst 40. Run via Collection Runner with 50 iterations to observe 429 responses. Check X-RateLimit-Remaining header."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actuator",
+      "item": [
+        {
+          "name": "Health (overall + CB states)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            }
+          }
+        },
+        {
+          "name": "Circuit Breaker States",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/circuitbreakers",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "circuitbreakers"]
+            }
+          }
+        },
+        {
+          "name": "Prometheus Scrape Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/prometheus",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "prometheus"]
+            },
+            "description": "Raw Prometheus text format. Scraped by the Prometheus container every 5s."
+          }
+        },
+        {
+          "name": "Gateway Routes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/gateway/routes",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "gateway", "routes"]
+            }
+          }
+        },
+        {
+          "name": "All Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/metrics",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "metrics"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

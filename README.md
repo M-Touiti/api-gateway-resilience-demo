@@ -4,61 +4,35 @@ A production-grade API Gateway built with Spring Cloud Gateway, implementing Cir
 
 Built as a project to showcase enterprise-grade distributed systems design applicable to fintech, e-commerce, and cloud-native platforms.
 
+[![CI](https://github.com/M-Touiti/api-gateway-resilience-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/M-Touiti/api-gateway-resilience-demo/actions/workflows/ci.yml)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
+[![Spring Cloud Gateway](https://img.shields.io/badge/Spring%20Cloud%20Gateway-4.x-brightgreen)](https://spring.io/projects/spring-cloud-gateway)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ---
 
 ## Architecture
 
-```
-                        ┌─────────────────────────────────────────────┐
-                        │              API GATEWAY :8080               │
-                        │                                              │
-  Client Request        │  ┌──────────────────────────────────────┐   │
-  ──────────────►       │  │ 1. RequestLoggingFilter (Global)      │   │
-                        │  │    → logs method, path, latency       │   │
-                        │  └──────────────┬───────────────────────┘   │
-                        │                 │                            │
-                        │  ┌──────────────▼───────────────────────┐   │
-                        │  │ 2. JwtAuthenticationFilter (per-route)│   │
-                        │  │    → validates JWT                    │   │
-                        │  │    → injects X-User-Email, X-User-Role│   │
-                        │  └──────────────┬───────────────────────┘   │
-                        │                 │                            │
-                        │  ┌──────────────▼───────────────────────┐   │
-                        │  │ 3. RedisRateLimiter (per-route)       │   │
-                        │  │    → per-user: 50 req/s (users)       │   │
-                        │  │    → per-user: 10 req/s (payments)    │   │
-                        │  │    → per-IP:   20 req/s (auth)        │   │
-                        │  └──────────────┬───────────────────────┘   │
-                        │                 │                            │
-                        │  ┌──────────────▼───────────────────────┐   │
-                        │  │ 4. CircuitBreaker (Resilience4j)      │   │
-                        │  │    → CLOSED → OPEN at 50% failure     │   │
-                        │  │    → OPEN → HALF_OPEN after 10s       │   │
-                        │  │    → fallback: /fallback/{service}    │   │
-                        │  └──────────────┬───────────────────────┘   │
-                        │                 │                            │
-                        │  ┌──────────────▼───────────────────────┐   │
-                        │  │ 5. Retry (on 502/503/504)             │   │
-                        │  │    → exponential backoff              │   │
-                        │  └──────────────┬───────────────────────┘   │
-                        └─────────────────│───────────────────────────┘
-                                          │
-              ┌───────────────────────────┼───────────────────────────┐
-              │                           │                           │
-              ▼                           ▼                           │
-   ┌──────────────────┐      ┌──────────────────────┐                │
-   │  user-service    │      │  payment-service      │                │
-   │  :8081           │      │  :8082                │                │
-   │                  │      │                       │                │
-   │  GET  /users/me  │      │  GET  /payments       │                │
-   │  GET  /users     │      │  POST /payments       │                │
-   │  POST /auth/login│      │  GET  /payments/slow  │                │
-   └──────────────────┘      └──────────────────────┘                │
-              │                                                        │
-              │              ┌──────────────────────┐                 │
-              │              │  Redis :6379           │                │
-              └──────────────►  Rate limit counters  │◄───────────────┘
-                             └──────────────────────┘
+```mermaid
+graph TD
+    Client(["Client"])
+
+    subgraph gw["API Gateway — port 8080"]
+        direction TB
+        F1["① RequestLoggingFilter<br/>Global — logs method, path, latency"]
+        F2["② JwtAuthentication<br/>validates Bearer token · injects X-User-Email, X-User-Role"]
+        F3["③ RedisRateLimiter<br/>token bucket per user (50/10 req/s) or per IP (20 req/s)"]
+        F4["④ CircuitBreaker — Resilience4j<br/>CLOSED → OPEN at 50% failure (30% for payments)"]
+        F5["⑤ Retry<br/>exponential backoff · 502/503/504 · GET only · max 3 attempts"]
+        F1 --> F2 --> F3 --> F4 --> F5
+    end
+
+    Client -->|"HTTP :8080"| F1
+    F3 <-->|"token bucket<br/>Lua script"| R[("Redis :6379")]
+    F4 -->|"circuit OPEN<br/>or timeout"| FB["FallbackController<br/>503 degraded response"]
+    F5 -->|"/api/v1/users/**"| US["User Service :8081"]
+    F5 -->|"/api/v1/payments/**"| PS["Payment Service :8082"]
+    FB -.->|503| Client
 ```
 
 ---
@@ -191,6 +165,17 @@ You ──► localhost:8080 (gateway, public)
 | user-service | 50% | 10s | 3 |
 | payment-service | 30% (stricter) | 30s | 2 |
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> CLOSED
+
+    CLOSED --> OPEN : failure rate ≥ threshold
+    OPEN --> HALF_OPEN : wait duration elapsed
+    HALF_OPEN --> CLOSED : test calls succeed
+    HALF_OPEN --> OPEN : test calls fail
+```
+
 **States:**
 - `CLOSED` → normal operation, requests pass through
 - `OPEN` → circuit open, all requests return fallback immediately (no downstream call)
@@ -261,10 +246,15 @@ docker-compose up -d
 curl http://localhost:8080/actuator/health
 ```
 
-**UIs available:**
-- Gateway: http://localhost:8080
-- Redis Commander: http://localhost:8090
-- Actuator circuit breakers: http://localhost:8080/actuator/circuitbreakers
+**UIs available after `docker-compose up -d`:**
+
+| Service | URL | Purpose |
+|---|---|---|
+| API Gateway | http://localhost:8080 | Main entry point |
+| Grafana | http://localhost:3000 | Pre-built dashboard (admin / admin) |
+| Prometheus | http://localhost:9090 | Raw metrics scrape target |
+| Redis Commander | http://localhost:8090 | Inspect rate-limit token buckets |
+| Actuator | http://localhost:8080/actuator/circuitbreakers | Live CB states (JSON) |
 
 ### Run tests
 
@@ -275,6 +265,26 @@ mvn test -pl gateway-service -Dtest="**/unit/**"
 # Integration tests (WireMock — no real services needed)
 mvn test -pl gateway-service -Dtest="**/integration/**"
 ```
+
+### Postman collection
+
+Import `postman/api-gateway-demo.json` into Postman. The collection includes:
+
+- **Auth / Generate Test JWT** — run this first; it builds a valid signed JWT and saves it to the `token` variable
+- **Resilience Demos** — step-by-step sequence to trigger the circuit breaker, observe the 503 fallback, and verify the rate limiter
+- **Actuator** — live circuit breaker states, Prometheus scrape endpoint, gateway routes
+
+All protected requests use `{{token}}` automatically.
+
+### Grafana dashboard
+
+Open http://localhost:3000 (admin / admin) after `docker-compose up -d`. The **API Gateway — Resilience** dashboard loads automatically and shows:
+
+- Circuit breaker states (CLOSED / OPEN / HALF_OPEN) in real time
+- Request rate by route and status code
+- Error breakdown: 401 (bad JWT), 429 (rate limited), 5xx (CB fallbacks)
+- P50 / P95 / P99 latency
+- Circuit breaker failure rate and blocked-call rate
 
 ---
 
