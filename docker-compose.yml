@@ -66,6 +66,11 @@ services:
       USER_SERVICE_URL: http://user-service:8081
       PAYMENT_SERVICE_URL: http://payment-service:8082
       JWT_SECRET: my-very-secret-key-that-is-at-least-256-bits-long-for-hs256
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health/readiness"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # ── Redis UI — inspect rate limit counters ────────────────────
   redis-commander:

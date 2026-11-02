@@ -190,6 +190,10 @@ management:
   endpoint:
     health:
       show-details: always
+      # /actuator/health goes DOWN with Redis, though the gateway still serves traffic.
+      # Point load balancers and orchestrators at /actuator/health/readiness instead.
+      probes:
+        enabled: true
     gateway:
       enabled: true
   health:
