@@ -1,6 +1,7 @@
 package com.demo.gateway.filter;
 
 import com.demo.gateway.config.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 /**
  * Gateway filter that validates JWT Bearer tokens on protected routes.
@@ -53,14 +56,16 @@ public class JwtAuthenticationGatewayFilterFactory
 
             String token = authHeader.substring(BEARER_PREFIX.length());
 
-            if (!jwtUtil.isValid(token)) {
+            Optional<Claims> claims = jwtUtil.parseClaims(token);
+
+            if (claims.isEmpty()) {
                 log.warn("Invalid or expired JWT token for path={}",
                         exchange.getRequest().getPath());
                 return unauthorized(exchange);
             }
 
-            String email = jwtUtil.extractEmail(token);
-            String role  = jwtUtil.extractRole(token);
+            String email = claims.get().getSubject();
+            String role  = claims.get().get("role", String.class);
 
             log.debug("JWT valid for email={} role={} path={}", email, role,
                     exchange.getRequest().getPath());

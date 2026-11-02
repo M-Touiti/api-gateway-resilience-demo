@@ -11,7 +11,8 @@ spring:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
       password: ${REDIS_PASSWORD:}
-      timeout: 2000ms
+      # The rate limiter fails open, so a request waits this long if Redis stops answering.
+      timeout: ${REDIS_TIMEOUT:200ms}
 
   cloud:
     gateway:
@@ -170,6 +171,13 @@ resilience4j:
 app:
   jwt:
     secret: ${JWT_SECRET:my-very-secret-key-that-is-at-least-256-bits-long-for-hs256}
+  rate-limit:
+    # Proxies in front of the gateway that add to X-Forwarded-For. With 0, the header is ignored,
+    # because a client can set it to anything. Behind one load balancer, set this to 1.
+    trusted-proxy-hops: ${TRUSTED_PROXY_HOPS:0}
+  redis:
+    # Unanswered commands allowed before new ones fail at once. Limits memory if Redis hangs.
+    max-pending-commands: 1024
 
 # ─────────────────────────────────────────────────────────────────
 # ACTUATOR — expose circuit breaker states + metrics
@@ -182,6 +190,10 @@ management:
   endpoint:
     health:
       show-details: always
+      # /actuator/health goes DOWN with Redis, though the gateway still serves traffic.
+      # Point load balancers and orchestrators at /actuator/health/readiness instead.
+      probes:
+        enabled: true
     gateway:
       enabled: true
   health:
