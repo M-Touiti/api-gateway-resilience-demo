@@ -51,6 +51,7 @@ services:
       context: .
       dockerfile: gateway-service/Dockerfile
     container_name: api-gateway
+    restart: unless-stopped   # the JVM exits on OutOfMemoryError instead of hanging
     ports:
       - "8080:8080"
     depends_on:
