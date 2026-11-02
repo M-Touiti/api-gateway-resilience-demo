@@ -170,6 +170,10 @@ resilience4j:
 app:
   jwt:
     secret: ${JWT_SECRET:my-very-secret-key-that-is-at-least-256-bits-long-for-hs256}
+  rate-limit:
+    # Proxies in front of the gateway that add to X-Forwarded-For. With 0, the header is ignored,
+    # because a client can set it to anything. Behind one load balancer, set this to 1.
+    trusted-proxy-hops: ${TRUSTED_PROXY_HOPS:0}
 
 # ─────────────────────────────────────────────────────────────────
 # ACTUATOR — expose circuit breaker states + metrics
