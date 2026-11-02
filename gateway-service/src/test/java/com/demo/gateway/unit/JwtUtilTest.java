@@ -38,37 +38,37 @@ class JwtUtilTest {
     @Test
     void shouldValidateCorrectToken() {
         String token = buildToken("user@test.com", "USER", 900_000);
-        assertThat(jwtUtil.isValid(token)).isTrue();
+        assertThat(jwtUtil.parseClaims(token)).isPresent();
     }
 
     @Test
     void shouldExtractEmailFromToken() {
         String token = buildToken("user@test.com", "USER", 900_000);
-        assertThat(jwtUtil.extractEmail(token)).isEqualTo("user@test.com");
+        assertThat(jwtUtil.parseClaims(token).orElseThrow().getSubject()).isEqualTo("user@test.com");
     }
 
     @Test
     void shouldExtractRoleFromToken() {
         String token = buildToken("admin@test.com", "ADMIN", 900_000);
-        assertThat(jwtUtil.extractRole(token)).isEqualTo("ADMIN");
+        assertThat(jwtUtil.parseClaims(token).orElseThrow().get("role", String.class)).isEqualTo("ADMIN");
     }
 
     @Test
     void shouldRejectExpiredToken() {
         String token = buildToken("user@test.com", "USER", -1000); // already expired
-        assertThat(jwtUtil.isValid(token)).isFalse();
+        assertThat(jwtUtil.parseClaims(token)).isEmpty();
     }
 
     @Test
     void shouldRejectTamperedToken() {
         String token = buildToken("user@test.com", "USER", 900_000);
         String tampered = token.substring(0, token.length() - 5) + "XXXXX";
-        assertThat(jwtUtil.isValid(tampered)).isFalse();
+        assertThat(jwtUtil.parseClaims(tampered)).isEmpty();
     }
 
     @Test
     void shouldRejectEmptyToken() {
-        assertThat(jwtUtil.isValid("")).isFalse();
+        assertThat(jwtUtil.parseClaims("")).isEmpty();
     }
 
     @Test
@@ -80,6 +80,6 @@ class JwtUtilTest {
                 .expiration(new Date(System.currentTimeMillis() + 900_000))
                 .signWith(wrongKey)
                 .compact();
-        assertThat(jwtUtil.isValid(tokenWithWrongSecret)).isFalse();
+        assertThat(jwtUtil.parseClaims(tokenWithWrongSecret)).isEmpty();
     }
 }
