@@ -9,3 +9,7 @@ target/
 !**/src/test/**/target/
 .DS_Store
 screenshots/*
+
+# Raw k6 output from load tests
+performance/results/raw/
+__pycache__/
