@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-11-01T14:46:08+0100",
+  "healthy_after_s": 4,
+  "without_redis": {
+    "requests": 11934,
+    "achieved_rps": 198.9,
+    "failed_rate": 0,
+    "dropped_iterations": 66,
+    "max_vus": 114,
+    "latency_ms": {
+      "p99": 476.18,
+      "max": 909.96,
+      "avg": 14.25,
+      "min": 0.65,
+      "med": 1.71,
+      "p90": 3.19,
+      "p95": 5.42
+    },
+    "success_latency_ms": {
+      "min": 0.65,
+      "med": 1.71,
+      "p90": 3.19,
+      "p95": 5.42,
+      "p99": 476.18,
+      "max": 909.96,
+      "avg": 14.25
+    },
+    "responses": {
+      "200": 11934,
+      "503": 0,
+      "other": 0
+    }
+  },
+  "after_redis_started": {
+    "allowed": 1598,
+    "limited": 4403,
+    "other": 0
+  }
+}

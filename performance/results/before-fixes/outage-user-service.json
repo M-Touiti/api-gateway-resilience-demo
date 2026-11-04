@@ -1,0 +1,5054 @@
+{
+  "generated_at": "2026-10-31T17:37:22+0100",
+  "victim": "user-service",
+  "settings": {},
+  "gateway_responsive_at_end": true,
+  "gc": {
+    "end of major GC": {
+      "count": 6,
+      "seconds": 0.551
+    },
+    "end of minor GC": {
+      "count": 553,
+      "seconds": 2.923
+    }
+  },
+  "heap": [
+    {
+      "t": 5,
+      "heap_mib": 61.6
+    },
+    {
+      "t": 10,
+      "heap_mib": 73.9
+    },
+    {
+      "t": 16,
+      "heap_mib": 82.0
+    },
+    {
+      "t": 21,
+      "heap_mib": 86.2
+    },
+    {
+      "t": 26,
+      "heap_mib": 62.0
+    },
+    {
+      "t": 31,
+      "heap_mib": 63.7
+    },
+    {
+      "t": 36,
+      "heap_mib": 68.3
+    },
+    {
+      "t": 42,
+      "heap_mib": 70.8
+    },
+    {
+      "t": 47,
+      "heap_mib": 72.0
+    },
+    {
+      "t": 52,
+      "heap_mib": 68.5
+    },
+    {
+      "t": 57,
+      "heap_mib": 71.6
+    },
+    {
+      "t": 63,
+      "heap_mib": 95.1
+    },
+    {
+      "t": 68,
+      "heap_mib": 60.6
+    },
+    {
+      "t": 73,
+      "heap_mib": 58.9
+    },
+    {
+      "t": 78,
+      "heap_mib": 76.4
+    },
+    {
+      "t": 83,
+      "heap_mib": 65.3
+    },
+    {
+      "t": 89,
+      "heap_mib": 79.6
+    },
+    {
+      "t": 94,
+      "heap_mib": 66.1
+    },
+    {
+      "t": 99,
+      "heap_mib": 83.8
+    },
+    {
+      "t": 104,
+      "heap_mib": 71.8
+    },
+    {
+      "t": 109,
+      "heap_mib": 59.3
+    },
+    {
+      "t": 115,
+      "heap_mib": 75.5
+    },
+    {
+      "t": 120,
+      "heap_mib": 60.5
+    },
+    {
+      "t": 125,
+      "heap_mib": 74.9
+    },
+    {
+      "t": 130,
+      "heap_mib": 63.2
+    },
+    {
+      "t": 135,
+      "heap_mib": 84.7
+    },
+    {
+      "t": 140,
+      "heap_mib": 85.3
+    },
+    {
+      "t": 146,
+      "heap_mib": 83.5
+    },
+    {
+      "t": 151,
+      "heap_mib": 82.3
+    },
+    {
+      "t": 156,
+      "heap_mib": 79.1
+    },
+    {
+      "t": 161,
+      "heap_mib": 76.8
+    },
+    {
+      "t": 166,
+      "heap_mib": 73.9
+    },
+    {
+      "t": 172,
+      "heap_mib": 75.1
+    },
+    {
+      "t": 177,
+      "heap_mib": 76.6
+    },
+    {
+      "t": 182,
+      "heap_mib": 81.4
+    }
+  ],
+  "users_rate": 200,
+  "payments_rate": 50,
+  "duration_s": 180,
+  "killed_at_s": 59.9,
+  "restarted_at_s": 120.5,
+  "overall": {
+    "requests": 44721,
+    "achieved_rps": 248.5,
+    "failed_rate": 0.31249,
+    "dropped_iterations": 462,
+    "max_vus": 659,
+    "latency_ms": {
+      "max": 5262.57,
+      "avg": 73.01,
+      "min": 0.57,
+      "med": 2.27,
+      "p90": 6.52,
+      "p95": 12.15,
+      "p99": 5001.88
+    }
+  },
+  "containers": {
+    "k6": {
+      "cpu_avg_pct": 26.8,
+      "cpu_max_pct": 56.4,
+      "mem_max_mib": 267
+    },
+    "gateway-service": {
+      "cpu_avg_pct": 58.9,
+      "cpu_max_pct": 203.1,
+      "mem_max_mib": 313
+    },
+    "redis": {
+      "cpu_avg_pct": 6.8,
+      "cpu_max_pct": 25.5,
+      "mem_max_mib": 4
+    },
+    "payment-service": {
+      "cpu_avg_pct": 11.2,
+      "cpu_max_pct": 40.0,
+      "mem_max_mib": 139
+    },
+    "user-service": {
+      "cpu_avg_pct": 38.4,
+      "cpu_max_pct": 295.1,
+      "mem_max_mib": 152
+    }
+  },
+  "timeline": [
+    {
+      "t": 0,
+      "route": "payments",
+      "count": 32,
+      "status": {
+        "200": 32
+      },
+      "p50_ms": 4.99,
+      "p95_ms": 27.71,
+      "max_ms": 32.73
+    },
+    {
+      "t": 0,
+      "route": "users",
+      "count": 127,
+      "status": {
+        "200": 127
+      },
+      "p50_ms": 2.57,
+      "p95_ms": 16.74,
+      "max_ms": 24.53
+    },
+    {
+      "t": 1,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.55,
+      "p95_ms": 9.36,
+      "max_ms": 18.27
+    },
+    {
+      "t": 1,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.23,
+      "p95_ms": 5.96,
+      "max_ms": 10.57
+    },
+    {
+      "t": 2,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.32,
+      "p95_ms": 9.73,
+      "max_ms": 11.66
+    },
+    {
+      "t": 2,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.14,
+      "p95_ms": 5.96,
+      "max_ms": 8.91
+    },
+    {
+      "t": 3,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.46,
+      "p95_ms": 8.6,
+      "max_ms": 10.06
+    },
+    {
+      "t": 3,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.6,
+      "p95_ms": 5.2,
+      "max_ms": 7.84
+    },
+    {
+      "t": 4,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.53,
+      "p95_ms": 14.13,
+      "max_ms": 24.44
+    },
+    {
+      "t": 4,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.56,
+      "p95_ms": 9.48,
+      "max_ms": 17.9
+    },
+    {
+      "t": 5,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.62,
+      "p95_ms": 5.84,
+      "max_ms": 7.67
+    },
+    {
+      "t": 5,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.93,
+      "p95_ms": 3.7,
+      "max_ms": 6.24
+    },
+    {
+      "t": 6,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.44,
+      "p95_ms": 7.51,
+      "max_ms": 17.05
+    },
+    {
+      "t": 6,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.79,
+      "p95_ms": 5.09,
+      "max_ms": 12.35
+    },
+    {
+      "t": 7,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 5.67,
+      "p95_ms": 12.37,
+      "max_ms": 14.73
+    },
+    {
+      "t": 7,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.7,
+      "p95_ms": 8.72,
+      "max_ms": 17.27
+    },
+    {
+      "t": 8,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.93,
+      "p95_ms": 6.58,
+      "max_ms": 12.19
+    },
+    {
+      "t": 8,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 1.71,
+      "p95_ms": 5.25,
+      "max_ms": 12.38
+    },
+    {
+      "t": 9,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.65,
+      "p95_ms": 13.55,
+      "max_ms": 17.85
+    },
+    {
+      "t": 9,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.06,
+      "p95_ms": 9.45,
+      "max_ms": 14.55
+    },
+    {
+      "t": 10,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.47,
+      "p95_ms": 9.06,
+      "max_ms": 16.21
+    },
+    {
+      "t": 10,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.05,
+      "p95_ms": 7.07,
+      "max_ms": 15.15
+    },
+    {
+      "t": 11,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.69,
+      "p95_ms": 7.7,
+      "max_ms": 11.37
+    },
+    {
+      "t": 11,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 1.91,
+      "p95_ms": 6.52,
+      "max_ms": 9.49
+    },
+    {
+      "t": 12,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.51,
+      "p95_ms": 12.51,
+      "max_ms": 14.76
+    },
+    {
+      "t": 12,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.24,
+      "p95_ms": 8.6,
+      "max_ms": 18.77
+    },
+    {
+      "t": 13,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.8,
+      "p95_ms": 10.3,
+      "max_ms": 15.19
+    },
+    {
+      "t": 13,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "200": 202
+      },
+      "p50_ms": 2.38,
+      "p95_ms": 7.69,
+      "max_ms": 12.12
+    },
+    {
+      "t": 14,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.95,
+      "p95_ms": 8.26,
+      "max_ms": 12.63
+    },
+    {
+      "t": 14,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 1.74,
+      "p95_ms": 5.53,
+      "max_ms": 8.88
+    },
+    {
+      "t": 15,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.26,
+      "p95_ms": 9.91,
+      "max_ms": 13.92
+    },
+    {
+      "t": 15,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.02,
+      "p95_ms": 7.64,
+      "max_ms": 12.25
+    },
+    {
+      "t": 16,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.14,
+      "p95_ms": 13.44,
+      "max_ms": 20.84
+    },
+    {
+      "t": 16,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.51,
+      "p95_ms": 9.03,
+      "max_ms": 20.18
+    },
+    {
+      "t": 17,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 5.34,
+      "p95_ms": 8.24,
+      "max_ms": 15.75
+    },
+    {
+      "t": 17,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.84,
+      "p95_ms": 6.74,
+      "max_ms": 15.04
+    },
+    {
+      "t": 18,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.4,
+      "p95_ms": 5.14,
+      "max_ms": 6.72
+    },
+    {
+      "t": 18,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.41,
+      "p95_ms": 4.45,
+      "max_ms": 7.68
+    },
+    {
+      "t": 19,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.15,
+      "p95_ms": 16.27,
+      "max_ms": 17.92
+    },
+    {
+      "t": 19,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.34,
+      "p95_ms": 10.86,
+      "max_ms": 23.32
+    },
+    {
+      "t": 20,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.73,
+      "p95_ms": 12.65,
+      "max_ms": 24.37
+    },
+    {
+      "t": 20,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.55,
+      "p95_ms": 9.73,
+      "max_ms": 21.74
+    },
+    {
+      "t": 21,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.96,
+      "p95_ms": 7.44,
+      "max_ms": 10.11
+    },
+    {
+      "t": 21,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.06,
+      "p95_ms": 5.74,
+      "max_ms": 8.34
+    },
+    {
+      "t": 22,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.78,
+      "p95_ms": 7.41,
+      "max_ms": 11.3
+    },
+    {
+      "t": 22,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.87,
+      "p95_ms": 7.57,
+      "max_ms": 11.03
+    },
+    {
+      "t": 23,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.73,
+      "p95_ms": 5.87,
+      "max_ms": 7.17
+    },
+    {
+      "t": 23,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.83,
+      "p95_ms": 4.12,
+      "max_ms": 5.78
+    },
+    {
+      "t": 24,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.02,
+      "p95_ms": 9.3,
+      "max_ms": 13.42
+    },
+    {
+      "t": 24,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.02,
+      "p95_ms": 6.17,
+      "max_ms": 12.59
+    },
+    {
+      "t": 25,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.07,
+      "p95_ms": 12.15,
+      "max_ms": 23.25
+    },
+    {
+      "t": 25,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.07,
+      "p95_ms": 11.13,
+      "max_ms": 24.13
+    },
+    {
+      "t": 26,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.21,
+      "p95_ms": 7.05,
+      "max_ms": 13.23
+    },
+    {
+      "t": 26,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.97,
+      "p95_ms": 7.29,
+      "max_ms": 21.13
+    },
+    {
+      "t": 27,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.64,
+      "p95_ms": 9.56,
+      "max_ms": 11.32
+    },
+    {
+      "t": 27,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.62,
+      "p95_ms": 8.32,
+      "max_ms": 13.36
+    },
+    {
+      "t": 28,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.89,
+      "p95_ms": 9.02,
+      "max_ms": 10.89
+    },
+    {
+      "t": 28,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.24,
+      "p95_ms": 7.12,
+      "max_ms": 10.14
+    },
+    {
+      "t": 29,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.85,
+      "p95_ms": 10.03,
+      "max_ms": 17.73
+    },
+    {
+      "t": 29,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.03,
+      "p95_ms": 7.41,
+      "max_ms": 14.09
+    },
+    {
+      "t": 30,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.63,
+      "p95_ms": 7.48,
+      "max_ms": 11.5
+    },
+    {
+      "t": 30,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.93,
+      "p95_ms": 5.93,
+      "max_ms": 11.14
+    },
+    {
+      "t": 31,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.83,
+      "p95_ms": 10.51,
+      "max_ms": 13.93
+    },
+    {
+      "t": 31,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.07,
+      "p95_ms": 8.3,
+      "max_ms": 14.25
+    },
+    {
+      "t": 32,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.75,
+      "p95_ms": 10.33,
+      "max_ms": 33.13
+    },
+    {
+      "t": 32,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 1.85,
+      "p95_ms": 9.7,
+      "max_ms": 44.66
+    },
+    {
+      "t": 33,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.52,
+      "p95_ms": 8.86,
+      "max_ms": 25.43
+    },
+    {
+      "t": 33,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.95,
+      "p95_ms": 6.93,
+      "max_ms": 10.66
+    },
+    {
+      "t": 34,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.22,
+      "p95_ms": 6.61,
+      "max_ms": 8.99
+    },
+    {
+      "t": 34,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.12,
+      "p95_ms": 5.23,
+      "max_ms": 8.77
+    },
+    {
+      "t": 35,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.46,
+      "p95_ms": 7.59,
+      "max_ms": 9.92
+    },
+    {
+      "t": 35,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.85,
+      "p95_ms": 5.44,
+      "max_ms": 12.16
+    },
+    {
+      "t": 36,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.96,
+      "p95_ms": 9.72,
+      "max_ms": 10.95
+    },
+    {
+      "t": 36,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.03,
+      "p95_ms": 7.53,
+      "max_ms": 10.12
+    },
+    {
+      "t": 37,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.83,
+      "p95_ms": 6.9,
+      "max_ms": 7.3
+    },
+    {
+      "t": 37,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.24,
+      "p95_ms": 5.82,
+      "max_ms": 9.02
+    },
+    {
+      "t": 38,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.69,
+      "p95_ms": 11.5,
+      "max_ms": 14.19
+    },
+    {
+      "t": 38,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.97,
+      "p95_ms": 9.07,
+      "max_ms": 13.25
+    },
+    {
+      "t": 39,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.3,
+      "p95_ms": 4.75,
+      "max_ms": 5.8
+    },
+    {
+      "t": 39,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 1.73,
+      "p95_ms": 4.58,
+      "max_ms": 7.81
+    },
+    {
+      "t": 40,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.77,
+      "p95_ms": 11.59,
+      "max_ms": 26.59
+    },
+    {
+      "t": 40,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.08,
+      "p95_ms": 9.44,
+      "max_ms": 33.84
+    },
+    {
+      "t": 41,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.71,
+      "p95_ms": 8.94,
+      "max_ms": 19.1
+    },
+    {
+      "t": 41,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.12,
+      "p95_ms": 8.02,
+      "max_ms": 18.76
+    },
+    {
+      "t": 42,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.66,
+      "p95_ms": 11.71,
+      "max_ms": 20.11
+    },
+    {
+      "t": 42,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.97,
+      "p95_ms": 8.99,
+      "max_ms": 21.44
+    },
+    {
+      "t": 43,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.77,
+      "p95_ms": 9.41,
+      "max_ms": 9.91
+    },
+    {
+      "t": 43,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.2,
+      "p95_ms": 7.69,
+      "max_ms": 13.23
+    },
+    {
+      "t": 44,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.56,
+      "p95_ms": 11.72,
+      "max_ms": 16.81
+    },
+    {
+      "t": 44,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.83,
+      "p95_ms": 9.16,
+      "max_ms": 13.69
+    },
+    {
+      "t": 45,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.12,
+      "p95_ms": 5.93,
+      "max_ms": 17.53
+    },
+    {
+      "t": 45,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 1.61,
+      "p95_ms": 7.64,
+      "max_ms": 14.14
+    },
+    {
+      "t": 46,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.34,
+      "p95_ms": 6.58,
+      "max_ms": 13.55
+    },
+    {
+      "t": 46,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 1.8,
+      "p95_ms": 5.31,
+      "max_ms": 12.32
+    },
+    {
+      "t": 47,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.92,
+      "p95_ms": 7.07,
+      "max_ms": 8.77
+    },
+    {
+      "t": 47,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.46,
+      "p95_ms": 5.42,
+      "max_ms": 8.09
+    },
+    {
+      "t": 48,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.44,
+      "p95_ms": 4.73,
+      "max_ms": 6.89
+    },
+    {
+      "t": 48,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.85,
+      "p95_ms": 4.23,
+      "max_ms": 5.64
+    },
+    {
+      "t": 49,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.78,
+      "p95_ms": 11.02,
+      "max_ms": 20.13
+    },
+    {
+      "t": 49,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.06,
+      "p95_ms": 10.13,
+      "max_ms": 27.27
+    },
+    {
+      "t": 50,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.37,
+      "p95_ms": 12.47,
+      "max_ms": 13.31
+    },
+    {
+      "t": 50,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.82,
+      "p95_ms": 8.81,
+      "max_ms": 14.18
+    },
+    {
+      "t": 51,
+      "route": "payments",
+      "count": 18,
+      "status": {
+        "200": 18
+      },
+      "p50_ms": 5.39,
+      "p95_ms": 579.41,
+      "max_ms": 579.41
+    },
+    {
+      "t": 51,
+      "route": "users",
+      "count": 75,
+      "status": {
+        "200": 75
+      },
+      "p50_ms": 4.21,
+      "p95_ms": 529.42,
+      "max_ms": 596.37
+    },
+    {
+      "t": 52,
+      "route": "payments",
+      "count": 82,
+      "status": {
+        "200": 82
+      },
+      "p50_ms": 3.43,
+      "p95_ms": 591.85,
+      "max_ms": 681.54
+    },
+    {
+      "t": 52,
+      "route": "users",
+      "count": 311,
+      "status": {
+        "200": 311
+      },
+      "p50_ms": 2.22,
+      "p95_ms": 577.37,
+      "max_ms": 695.15
+    },
+    {
+      "t": 53,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.23,
+      "p95_ms": 4.42,
+      "max_ms": 8.94
+    },
+    {
+      "t": 53,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.71,
+      "p95_ms": 4.04,
+      "max_ms": 8.29
+    },
+    {
+      "t": 54,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.33,
+      "p95_ms": 6.52,
+      "max_ms": 14.19
+    },
+    {
+      "t": 54,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.78,
+      "p95_ms": 7.56,
+      "max_ms": 11.24
+    },
+    {
+      "t": 55,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.3,
+      "p95_ms": 11.32,
+      "max_ms": 14.15
+    },
+    {
+      "t": 55,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.77,
+      "p95_ms": 7.82,
+      "max_ms": 12.23
+    },
+    {
+      "t": 56,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.16,
+      "p95_ms": 5.09,
+      "max_ms": 9.31
+    },
+    {
+      "t": 56,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 1.74,
+      "p95_ms": 6.55,
+      "max_ms": 9.01
+    },
+    {
+      "t": 57,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.92,
+      "p95_ms": 9.71,
+      "max_ms": 16.34
+    },
+    {
+      "t": 57,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 3.34,
+      "p95_ms": 5.74,
+      "max_ms": 12.54
+    },
+    {
+      "t": 58,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.34,
+      "p95_ms": 9.72,
+      "max_ms": 23.24
+    },
+    {
+      "t": 58,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.8,
+      "p95_ms": 10.25,
+      "max_ms": 24.26
+    },
+    {
+      "t": 59,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.56,
+      "p95_ms": 9.28,
+      "max_ms": 12.17
+    },
+    {
+      "t": 59,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.09,
+      "p95_ms": 7.9,
+      "max_ms": 10.0
+    },
+    {
+      "t": 60,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.81,
+      "p95_ms": 11.45,
+      "max_ms": 16.6
+    },
+    {
+      "t": 60,
+      "route": "users",
+      "count": 28,
+      "status": {
+        "200": 28
+      },
+      "p50_ms": 1.93,
+      "p95_ms": 2.64,
+      "max_ms": 3.98
+    },
+    {
+      "t": 61,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.22,
+      "p95_ms": 12.27,
+      "max_ms": 12.73
+    },
+    {
+      "t": 62,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.2,
+      "p95_ms": 11.39,
+      "max_ms": 14.07
+    },
+    {
+      "t": 63,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.88,
+      "p95_ms": 14.28,
+      "max_ms": 24.44
+    },
+    {
+      "t": 64,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.99,
+      "p95_ms": 99.16,
+      "max_ms": 137.16
+    },
+    {
+      "t": 65,
+      "route": "payments",
+      "count": 30,
+      "status": {
+        "200": 30
+      },
+      "p50_ms": 8.91,
+      "p95_ms": 269.64,
+      "max_ms": 288.04
+    },
+    {
+      "t": 65,
+      "route": "users",
+      "count": 215,
+      "status": {
+        "503": 215
+      },
+      "p50_ms": 5002.16,
+      "p95_ms": 5139.29,
+      "max_ms": 5177.21
+    },
+    {
+      "t": 66,
+      "route": "payments",
+      "count": 60,
+      "status": {
+        "200": 60
+      },
+      "p50_ms": 356.0,
+      "p95_ms": 645.12,
+      "max_ms": 683.45
+    },
+    {
+      "t": 66,
+      "route": "users",
+      "count": 352,
+      "status": {
+        "503": 352
+      },
+      "p50_ms": 486.39,
+      "p95_ms": 5148.12,
+      "max_ms": 5262.57
+    },
+    {
+      "t": 67,
+      "route": "payments",
+      "count": 59,
+      "status": {
+        "200": 59
+      },
+      "p50_ms": 27.82,
+      "p95_ms": 215.56,
+      "max_ms": 254.85
+    },
+    {
+      "t": 67,
+      "route": "users",
+      "count": 337,
+      "status": {
+        "503": 337
+      },
+      "p50_ms": 80.5,
+      "p95_ms": 5013.29,
+      "max_ms": 5060.16
+    },
+    {
+      "t": 68,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.81,
+      "p95_ms": 9.21,
+      "max_ms": 28.58
+    },
+    {
+      "t": 68,
+      "route": "users",
+      "count": 304,
+      "status": {
+        "503": 304
+      },
+      "p50_ms": 2.11,
+      "p95_ms": 5005.56,
+      "max_ms": 5031.76
+    },
+    {
+      "t": 69,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.81,
+      "p95_ms": 6.59,
+      "max_ms": 7.83
+    },
+    {
+      "t": 69,
+      "route": "users",
+      "count": 300,
+      "status": {
+        "503": 300
+      },
+      "p50_ms": 1.99,
+      "p95_ms": 5009.99,
+      "max_ms": 5135.03
+    },
+    {
+      "t": 70,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.94,
+      "p95_ms": 8.14,
+      "max_ms": 16.18
+    },
+    {
+      "t": 70,
+      "route": "users",
+      "count": 216,
+      "status": {
+        "503": 216
+      },
+      "p50_ms": 1.59,
+      "p95_ms": 5002.54,
+      "max_ms": 5009.49
+    },
+    {
+      "t": 71,
+      "route": "payments",
+      "count": 47,
+      "status": {
+        "200": 47
+      },
+      "p50_ms": 3.54,
+      "p95_ms": 38.57,
+      "max_ms": 42.67
+    },
+    {
+      "t": 71,
+      "route": "users",
+      "count": 186,
+      "status": {
+        "503": 186
+      },
+      "p50_ms": 1.98,
+      "p95_ms": 28.45,
+      "max_ms": 48.91
+    },
+    {
+      "t": 72,
+      "route": "payments",
+      "count": 53,
+      "status": {
+        "200": 53
+      },
+      "p50_ms": 4.11,
+      "p95_ms": 283.72,
+      "max_ms": 325.49
+    },
+    {
+      "t": 72,
+      "route": "users",
+      "count": 214,
+      "status": {
+        "503": 214
+      },
+      "p50_ms": 2.31,
+      "p95_ms": 250.58,
+      "max_ms": 310.22
+    },
+    {
+      "t": 73,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.91,
+      "p95_ms": 8.96,
+      "max_ms": 23.54
+    },
+    {
+      "t": 73,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.54,
+      "p95_ms": 7.71,
+      "max_ms": 13.44
+    },
+    {
+      "t": 74,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.8,
+      "p95_ms": 13.51,
+      "max_ms": 25.02
+    },
+    {
+      "t": 74,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.54,
+      "p95_ms": 6.59,
+      "max_ms": 13.17
+    },
+    {
+      "t": 75,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.73,
+      "p95_ms": 6.12,
+      "max_ms": 10.74
+    },
+    {
+      "t": 75,
+      "route": "users",
+      "count": 197,
+      "status": {
+        "503": 197
+      },
+      "p50_ms": 1.47,
+      "p95_ms": 4.36,
+      "max_ms": 8.54
+    },
+    {
+      "t": 76,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.22,
+      "p95_ms": 7.98,
+      "max_ms": 12.46
+    },
+    {
+      "t": 76,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.68,
+      "p95_ms": 5.48,
+      "max_ms": 19.02
+    },
+    {
+      "t": 77,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.48,
+      "p95_ms": 7.91,
+      "max_ms": 10.96
+    },
+    {
+      "t": 77,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.67,
+      "p95_ms": 7.01,
+      "max_ms": 18.92
+    },
+    {
+      "t": 78,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.4,
+      "p95_ms": 6.66,
+      "max_ms": 7.93
+    },
+    {
+      "t": 78,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.93,
+      "p95_ms": 4.0,
+      "max_ms": 7.21
+    },
+    {
+      "t": 79,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.83,
+      "p95_ms": 5.96,
+      "max_ms": 9.75
+    },
+    {
+      "t": 79,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "503": 199
+      },
+      "p50_ms": 1.72,
+      "p95_ms": 4.27,
+      "max_ms": 5.52
+    },
+    {
+      "t": 80,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.95,
+      "p95_ms": 8.6,
+      "max_ms": 12.01
+    },
+    {
+      "t": 80,
+      "route": "users",
+      "count": 203,
+      "status": {
+        "503": 203
+      },
+      "p50_ms": 1.76,
+      "p95_ms": 5.95,
+      "max_ms": 5002.96
+    },
+    {
+      "t": 81,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.8,
+      "p95_ms": 9.37,
+      "max_ms": 13.31
+    },
+    {
+      "t": 81,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.62,
+      "p95_ms": 4.34,
+      "max_ms": 9.19
+    },
+    {
+      "t": 82,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.89,
+      "p95_ms": 12.57,
+      "max_ms": 65.89
+    },
+    {
+      "t": 82,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.55,
+      "p95_ms": 8.62,
+      "max_ms": 88.41
+    },
+    {
+      "t": 83,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.8,
+      "p95_ms": 5.09,
+      "max_ms": 6.34
+    },
+    {
+      "t": 83,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.45,
+      "p95_ms": 3.18,
+      "max_ms": 4.93
+    },
+    {
+      "t": 84,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.81,
+      "p95_ms": 25.93,
+      "max_ms": 38.52
+    },
+    {
+      "t": 84,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.53,
+      "p95_ms": 16.4,
+      "max_ms": 38.4
+    },
+    {
+      "t": 85,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.67,
+      "p95_ms": 6.0,
+      "max_ms": 17.63
+    },
+    {
+      "t": 85,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "503": 201
+      },
+      "p50_ms": 1.43,
+      "p95_ms": 5.74,
+      "max_ms": 5001.72
+    },
+    {
+      "t": 86,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.59,
+      "p95_ms": 123.69,
+      "max_ms": 147.29
+    },
+    {
+      "t": 86,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.9,
+      "p95_ms": 129.79,
+      "max_ms": 170.08
+    },
+    {
+      "t": 87,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.0,
+      "p95_ms": 8.63,
+      "max_ms": 15.12
+    },
+    {
+      "t": 87,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.63,
+      "p95_ms": 4.44,
+      "max_ms": 14.74
+    },
+    {
+      "t": 88,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.71,
+      "p95_ms": 10.12,
+      "max_ms": 13.06
+    },
+    {
+      "t": 88,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.44,
+      "p95_ms": 5.3,
+      "max_ms": 12.65
+    },
+    {
+      "t": 89,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.9,
+      "p95_ms": 9.82,
+      "max_ms": 10.41
+    },
+    {
+      "t": 89,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.54,
+      "p95_ms": 4.09,
+      "max_ms": 8.66
+    },
+    {
+      "t": 90,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.01,
+      "p95_ms": 9.39,
+      "max_ms": 11.55
+    },
+    {
+      "t": 90,
+      "route": "users",
+      "count": 197,
+      "status": {
+        "503": 197
+      },
+      "p50_ms": 1.61,
+      "p95_ms": 5.84,
+      "max_ms": 9.22
+    },
+    {
+      "t": 91,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.84,
+      "p95_ms": 7.75,
+      "max_ms": 15.9
+    },
+    {
+      "t": 91,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.48,
+      "p95_ms": 5.21,
+      "max_ms": 8.79
+    },
+    {
+      "t": 92,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.56,
+      "p95_ms": 6.48,
+      "max_ms": 13.94
+    },
+    {
+      "t": 92,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.49,
+      "p95_ms": 5.09,
+      "max_ms": 6.99
+    },
+    {
+      "t": 93,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.48,
+      "p95_ms": 5.11,
+      "max_ms": 6.86
+    },
+    {
+      "t": 93,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.38,
+      "p95_ms": 3.33,
+      "max_ms": 5.82
+    },
+    {
+      "t": 94,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.05,
+      "p95_ms": 9.8,
+      "max_ms": 14.78
+    },
+    {
+      "t": 94,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.5,
+      "p95_ms": 6.16,
+      "max_ms": 13.21
+    },
+    {
+      "t": 95,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.73,
+      "p95_ms": 7.53,
+      "max_ms": 8.97
+    },
+    {
+      "t": 95,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "503": 202
+      },
+      "p50_ms": 1.45,
+      "p95_ms": 5.03,
+      "max_ms": 5001.65
+    },
+    {
+      "t": 96,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.23,
+      "p95_ms": 9.52,
+      "max_ms": 10.76
+    },
+    {
+      "t": 96,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.51,
+      "p95_ms": 6.65,
+      "max_ms": 10.85
+    },
+    {
+      "t": 97,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 5.28,
+      "p95_ms": 10.25,
+      "max_ms": 14.48
+    },
+    {
+      "t": 97,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.92,
+      "p95_ms": 5.54,
+      "max_ms": 10.28
+    },
+    {
+      "t": 98,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.03,
+      "p95_ms": 14.34,
+      "max_ms": 20.24
+    },
+    {
+      "t": 98,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.62,
+      "p95_ms": 8.02,
+      "max_ms": 16.55
+    },
+    {
+      "t": 99,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.12,
+      "p95_ms": 6.65,
+      "max_ms": 10.32
+    },
+    {
+      "t": 99,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "503": 199
+      },
+      "p50_ms": 1.56,
+      "p95_ms": 5.97,
+      "max_ms": 9.3
+    },
+    {
+      "t": 100,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.57,
+      "p95_ms": 6.37,
+      "max_ms": 8.73
+    },
+    {
+      "t": 100,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "503": 202
+      },
+      "p50_ms": 1.41,
+      "p95_ms": 3.47,
+      "max_ms": 5001.38
+    },
+    {
+      "t": 101,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.69,
+      "p95_ms": 8.22,
+      "max_ms": 11.94
+    },
+    {
+      "t": 101,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.49,
+      "p95_ms": 4.76,
+      "max_ms": 9.33
+    },
+    {
+      "t": 102,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.76,
+      "p95_ms": 7.22,
+      "max_ms": 9.32
+    },
+    {
+      "t": 102,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.52,
+      "p95_ms": 4.91,
+      "max_ms": 12.51
+    },
+    {
+      "t": 103,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.64,
+      "p95_ms": 9.15,
+      "max_ms": 9.72
+    },
+    {
+      "t": 103,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.15,
+      "p95_ms": 6.42,
+      "max_ms": 11.9
+    },
+    {
+      "t": 104,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.79,
+      "p95_ms": 11.55,
+      "max_ms": 19.35
+    },
+    {
+      "t": 104,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.57,
+      "p95_ms": 7.54,
+      "max_ms": 13.52
+    },
+    {
+      "t": 105,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.73,
+      "p95_ms": 7.6,
+      "max_ms": 9.57
+    },
+    {
+      "t": 105,
+      "route": "users",
+      "count": 197,
+      "status": {
+        "503": 197
+      },
+      "p50_ms": 1.41,
+      "p95_ms": 4.65,
+      "max_ms": 10.61
+    },
+    {
+      "t": 106,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.1,
+      "p95_ms": 17.5,
+      "max_ms": 26.38
+    },
+    {
+      "t": 106,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.63,
+      "p95_ms": 13.78,
+      "max_ms": 18.88
+    },
+    {
+      "t": 107,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.06,
+      "p95_ms": 9.3,
+      "max_ms": 11.25
+    },
+    {
+      "t": 107,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.57,
+      "p95_ms": 4.8,
+      "max_ms": 23.15
+    },
+    {
+      "t": 108,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.2,
+      "p95_ms": 17.83,
+      "max_ms": 34.41
+    },
+    {
+      "t": 108,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.7,
+      "p95_ms": 9.37,
+      "max_ms": 28.54
+    },
+    {
+      "t": 109,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.96,
+      "p95_ms": 8.66,
+      "max_ms": 15.14
+    },
+    {
+      "t": 109,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.49,
+      "p95_ms": 5.95,
+      "max_ms": 7.71
+    },
+    {
+      "t": 110,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.97,
+      "p95_ms": 18.37,
+      "max_ms": 29.28
+    },
+    {
+      "t": 110,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "503": 201
+      },
+      "p50_ms": 1.42,
+      "p95_ms": 14.44,
+      "max_ms": 5001.87
+    },
+    {
+      "t": 111,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.68,
+      "p95_ms": 9.67,
+      "max_ms": 12.87
+    },
+    {
+      "t": 111,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.45,
+      "p95_ms": 7.88,
+      "max_ms": 15.25
+    },
+    {
+      "t": 112,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.15,
+      "p95_ms": 10.04,
+      "max_ms": 13.57
+    },
+    {
+      "t": 112,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.55,
+      "p95_ms": 5.81,
+      "max_ms": 18.12
+    },
+    {
+      "t": 113,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.58,
+      "p95_ms": 9.85,
+      "max_ms": 12.33
+    },
+    {
+      "t": 113,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "503": 199
+      },
+      "p50_ms": 1.39,
+      "p95_ms": 5.09,
+      "max_ms": 9.86
+    },
+    {
+      "t": 114,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.99,
+      "p95_ms": 18.1,
+      "max_ms": 25.42
+    },
+    {
+      "t": 114,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "503": 201
+      },
+      "p50_ms": 1.53,
+      "p95_ms": 15.22,
+      "max_ms": 26.83
+    },
+    {
+      "t": 115,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.96,
+      "p95_ms": 14.07,
+      "max_ms": 18.76
+    },
+    {
+      "t": 115,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "503": 202
+      },
+      "p50_ms": 1.65,
+      "p95_ms": 8.6,
+      "max_ms": 5002.45
+    },
+    {
+      "t": 116,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.43,
+      "p95_ms": 14.39,
+      "max_ms": 18.14
+    },
+    {
+      "t": 116,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.36,
+      "p95_ms": 6.68,
+      "max_ms": 20.46
+    },
+    {
+      "t": 117,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.01,
+      "p95_ms": 6.05,
+      "max_ms": 7.47
+    },
+    {
+      "t": 117,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 2.52,
+      "p95_ms": 4.87,
+      "max_ms": 8.94
+    },
+    {
+      "t": 118,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.84,
+      "p95_ms": 10.31,
+      "max_ms": 14.27
+    },
+    {
+      "t": 118,
+      "route": "users",
+      "count": 198,
+      "status": {
+        "503": 198
+      },
+      "p50_ms": 1.5,
+      "p95_ms": 6.94,
+      "max_ms": 12.54
+    },
+    {
+      "t": 119,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.38,
+      "p95_ms": 9.97,
+      "max_ms": 13.19
+    },
+    {
+      "t": 119,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "503": 202
+      },
+      "p50_ms": 1.67,
+      "p95_ms": 7.12,
+      "max_ms": 16.15
+    },
+    {
+      "t": 120,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.02,
+      "p95_ms": 22.41,
+      "max_ms": 42.0
+    },
+    {
+      "t": 120,
+      "route": "users",
+      "count": 197,
+      "status": {
+        "503": 197
+      },
+      "p50_ms": 1.67,
+      "p95_ms": 13.98,
+      "max_ms": 37.07
+    },
+    {
+      "t": 121,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.04,
+      "p95_ms": 4.48,
+      "max_ms": 11.04
+    },
+    {
+      "t": 121,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.79,
+      "p95_ms": 2.79,
+      "max_ms": 10.93
+    },
+    {
+      "t": 122,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 3.29,
+      "p95_ms": 5.89,
+      "max_ms": 11.39
+    },
+    {
+      "t": 122,
+      "route": "users",
+      "count": 204,
+      "status": {
+        "503": 204
+      },
+      "p50_ms": 2.16,
+      "p95_ms": 3.48,
+      "max_ms": 2032.01
+    },
+    {
+      "t": 123,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 3.13,
+      "p95_ms": 4.44,
+      "max_ms": 6.59
+    },
+    {
+      "t": 123,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.92,
+      "p95_ms": 3.09,
+      "max_ms": 5.12
+    },
+    {
+      "t": 124,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.89,
+      "p95_ms": 4.72,
+      "max_ms": 12.75
+    },
+    {
+      "t": 124,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.73,
+      "p95_ms": 3.27,
+      "max_ms": 11.67
+    },
+    {
+      "t": 125,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.02,
+      "p95_ms": 13.18,
+      "max_ms": 19.2
+    },
+    {
+      "t": 125,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.52,
+      "p95_ms": 7.12,
+      "max_ms": 15.13
+    },
+    {
+      "t": 126,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.87,
+      "p95_ms": 12.24,
+      "max_ms": 19.65
+    },
+    {
+      "t": 126,
+      "route": "users",
+      "count": 198,
+      "status": {
+        "503": 198
+      },
+      "p50_ms": 1.48,
+      "p95_ms": 7.23,
+      "max_ms": 17.95
+    },
+    {
+      "t": 127,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 4.62,
+      "p95_ms": 8.66,
+      "max_ms": 9.88
+    },
+    {
+      "t": 127,
+      "route": "users",
+      "count": 202,
+      "status": {
+        "503": 202
+      },
+      "p50_ms": 2.67,
+      "p95_ms": 4.86,
+      "max_ms": 8.87
+    },
+    {
+      "t": 128,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.06,
+      "p95_ms": 11.1,
+      "max_ms": 12.39
+    },
+    {
+      "t": 128,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.68,
+      "p95_ms": 7.92,
+      "max_ms": 10.74
+    },
+    {
+      "t": 129,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.9,
+      "p95_ms": 12.53,
+      "max_ms": 24.72
+    },
+    {
+      "t": 129,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.52,
+      "p95_ms": 14.47,
+      "max_ms": 36.43
+    },
+    {
+      "t": 130,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.8,
+      "p95_ms": 18.29,
+      "max_ms": 30.16
+    },
+    {
+      "t": 130,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.52,
+      "p95_ms": 9.37,
+      "max_ms": 26.56
+    },
+    {
+      "t": 131,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.42,
+      "p95_ms": 12.33,
+      "max_ms": 14.24
+    },
+    {
+      "t": 131,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "503": 200
+      },
+      "p50_ms": 1.61,
+      "p95_ms": 7.71,
+      "max_ms": 9.42
+    },
+    {
+      "t": 132,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.54,
+      "p95_ms": 7.86,
+      "max_ms": 9.82
+    },
+    {
+      "t": 132,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "503": 50,
+        "200": 149
+      },
+      "p50_ms": 3.53,
+      "p95_ms": 8.23,
+      "max_ms": 18.66
+    },
+    {
+      "t": 133,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.29,
+      "p95_ms": 4.34,
+      "max_ms": 4.87
+    },
+    {
+      "t": 133,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.95,
+      "p95_ms": 5.77,
+      "max_ms": 10.19
+    },
+    {
+      "t": 134,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.14,
+      "p95_ms": 5.25,
+      "max_ms": 7.32
+    },
+    {
+      "t": 134,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.69,
+      "p95_ms": 7.54,
+      "max_ms": 11.69
+    },
+    {
+      "t": 135,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.26,
+      "p95_ms": 4.56,
+      "max_ms": 5.19
+    },
+    {
+      "t": 135,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.7,
+      "p95_ms": 5.32,
+      "max_ms": 8.22
+    },
+    {
+      "t": 136,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.17,
+      "p95_ms": 5.31,
+      "max_ms": 6.53
+    },
+    {
+      "t": 136,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.43,
+      "p95_ms": 6.22,
+      "max_ms": 8.57
+    },
+    {
+      "t": 137,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 3.83,
+      "p95_ms": 6.52,
+      "max_ms": 7.45
+    },
+    {
+      "t": 137,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 4.68,
+      "p95_ms": 8.16,
+      "max_ms": 10.57
+    },
+    {
+      "t": 138,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.19,
+      "p95_ms": 4.61,
+      "max_ms": 5.91
+    },
+    {
+      "t": 138,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.45,
+      "p95_ms": 4.61,
+      "max_ms": 7.11
+    },
+    {
+      "t": 139,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.18,
+      "p95_ms": 4.45,
+      "max_ms": 13.5
+    },
+    {
+      "t": 139,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.25,
+      "p95_ms": 5.68,
+      "max_ms": 11.77
+    },
+    {
+      "t": 140,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.16,
+      "p95_ms": 5.17,
+      "max_ms": 7.33
+    },
+    {
+      "t": 140,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.15,
+      "p95_ms": 5.88,
+      "max_ms": 11.12
+    },
+    {
+      "t": 141,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.06,
+      "p95_ms": 2.77,
+      "max_ms": 3.98
+    },
+    {
+      "t": 141,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.99,
+      "p95_ms": 3.46,
+      "max_ms": 4.25
+    },
+    {
+      "t": 142,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.41,
+      "p95_ms": 8.64,
+      "max_ms": 10.08
+    },
+    {
+      "t": 142,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.26,
+      "p95_ms": 8.09,
+      "max_ms": 11.83
+    },
+    {
+      "t": 143,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.4,
+      "p95_ms": 5.41,
+      "max_ms": 7.65
+    },
+    {
+      "t": 143,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.46,
+      "p95_ms": 5.12,
+      "max_ms": 8.8
+    },
+    {
+      "t": 144,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.21,
+      "p95_ms": 7.16,
+      "max_ms": 8.78
+    },
+    {
+      "t": 144,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.09,
+      "p95_ms": 6.97,
+      "max_ms": 9.66
+    },
+    {
+      "t": 145,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.29,
+      "p95_ms": 4.82,
+      "max_ms": 9.73
+    },
+    {
+      "t": 145,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.31,
+      "p95_ms": 5.35,
+      "max_ms": 8.63
+    },
+    {
+      "t": 146,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.13,
+      "p95_ms": 3.75,
+      "max_ms": 5.6
+    },
+    {
+      "t": 146,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.03,
+      "p95_ms": 4.46,
+      "max_ms": 8.1
+    },
+    {
+      "t": 147,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.8,
+      "p95_ms": 5.43,
+      "max_ms": 8.21
+    },
+    {
+      "t": 147,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 4.01,
+      "p95_ms": 7.61,
+      "max_ms": 15.12
+    },
+    {
+      "t": 148,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.44,
+      "p95_ms": 14.24,
+      "max_ms": 26.64
+    },
+    {
+      "t": 148,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.3,
+      "p95_ms": 13.93,
+      "max_ms": 30.31
+    },
+    {
+      "t": 149,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.59,
+      "p95_ms": 7.71,
+      "max_ms": 10.3
+    },
+    {
+      "t": 149,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.26,
+      "p95_ms": 7.62,
+      "max_ms": 15.55
+    },
+    {
+      "t": 150,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.3,
+      "p95_ms": 8.18,
+      "max_ms": 19.63
+    },
+    {
+      "t": 150,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.23,
+      "p95_ms": 8.81,
+      "max_ms": 21.31
+    },
+    {
+      "t": 151,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.55,
+      "p95_ms": 8.23,
+      "max_ms": 12.13
+    },
+    {
+      "t": 151,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.31,
+      "p95_ms": 8.43,
+      "max_ms": 11.38
+    },
+    {
+      "t": 152,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.41,
+      "p95_ms": 8.79,
+      "max_ms": 9.55
+    },
+    {
+      "t": 152,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.4,
+      "p95_ms": 8.39,
+      "max_ms": 10.27
+    },
+    {
+      "t": 153,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.01,
+      "p95_ms": 4.18,
+      "max_ms": 4.54
+    },
+    {
+      "t": 153,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.0,
+      "p95_ms": 4.06,
+      "max_ms": 6.09
+    },
+    {
+      "t": 154,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.69,
+      "p95_ms": 12.15,
+      "max_ms": 31.2
+    },
+    {
+      "t": 154,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.14,
+      "p95_ms": 9.51,
+      "max_ms": 26.16
+    },
+    {
+      "t": 155,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.19,
+      "p95_ms": 6.28,
+      "max_ms": 11.94
+    },
+    {
+      "t": 155,
+      "route": "users",
+      "count": 199,
+      "status": {
+        "200": 199
+      },
+      "p50_ms": 2.01,
+      "p95_ms": 9.77,
+      "max_ms": 20.16
+    },
+    {
+      "t": 156,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.27,
+      "p95_ms": 10.16,
+      "max_ms": 26.53
+    },
+    {
+      "t": 156,
+      "route": "users",
+      "count": 201,
+      "status": {
+        "200": 201
+      },
+      "p50_ms": 2.02,
+      "p95_ms": 9.9,
+      "max_ms": 31.0
+    },
+    {
+      "t": 157,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.94,
+      "p95_ms": 10.71,
+      "max_ms": 26.95
+    },
+    {
+      "t": 157,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.76,
+      "p95_ms": 9.03,
+      "max_ms": 36.25
+    },
+    {
+      "t": 158,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.22,
+      "p95_ms": 5.39,
+      "max_ms": 6.93
+    },
+    {
+      "t": 158,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.13,
+      "p95_ms": 4.55,
+      "max_ms": 7.8
+    },
+    {
+      "t": 159,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.23,
+      "p95_ms": 5.98,
+      "max_ms": 12.34
+    },
+    {
+      "t": 159,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.09,
+      "p95_ms": 5.83,
+      "max_ms": 11.16
+    },
+    {
+      "t": 160,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.29,
+      "p95_ms": 4.6,
+      "max_ms": 5.34
+    },
+    {
+      "t": 160,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.19,
+      "p95_ms": 4.4,
+      "max_ms": 10.0
+    },
+    {
+      "t": 161,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.25,
+      "p95_ms": 5.4,
+      "max_ms": 9.06
+    },
+    {
+      "t": 161,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.99,
+      "p95_ms": 6.39,
+      "max_ms": 9.97
+    },
+    {
+      "t": 162,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 1.97,
+      "p95_ms": 15.63,
+      "max_ms": 22.06
+    },
+    {
+      "t": 162,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.86,
+      "p95_ms": 9.04,
+      "max_ms": 40.81
+    },
+    {
+      "t": 163,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.17,
+      "p95_ms": 7.71,
+      "max_ms": 9.98
+    },
+    {
+      "t": 163,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.97,
+      "p95_ms": 7.16,
+      "max_ms": 10.75
+    },
+    {
+      "t": 164,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.1,
+      "p95_ms": 3.75,
+      "max_ms": 4.52
+    },
+    {
+      "t": 164,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.01,
+      "p95_ms": 4.93,
+      "max_ms": 7.63
+    },
+    {
+      "t": 165,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.04,
+      "p95_ms": 6.77,
+      "max_ms": 12.71
+    },
+    {
+      "t": 165,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.94,
+      "p95_ms": 8.4,
+      "max_ms": 12.15
+    },
+    {
+      "t": 166,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.26,
+      "p95_ms": 4.98,
+      "max_ms": 6.13
+    },
+    {
+      "t": 166,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.06,
+      "p95_ms": 4.37,
+      "max_ms": 6.19
+    },
+    {
+      "t": 167,
+      "route": "payments",
+      "count": 41,
+      "status": {
+        "200": 41
+      },
+      "p50_ms": 4.18,
+      "p95_ms": 50.47,
+      "max_ms": 105.81
+    },
+    {
+      "t": 167,
+      "route": "users",
+      "count": 165,
+      "status": {
+        "200": 165
+      },
+      "p50_ms": 4.01,
+      "p95_ms": 54.61,
+      "max_ms": 119.58
+    },
+    {
+      "t": 168,
+      "route": "payments",
+      "count": 59,
+      "status": {
+        "200": 59
+      },
+      "p50_ms": 24.32,
+      "p95_ms": 494.52,
+      "max_ms": 537.88
+    },
+    {
+      "t": 168,
+      "route": "users",
+      "count": 235,
+      "status": {
+        "200": 235
+      },
+      "p50_ms": 34.75,
+      "p95_ms": 515.35,
+      "max_ms": 572.89
+    },
+    {
+      "t": 169,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.32,
+      "p95_ms": 7.32,
+      "max_ms": 9.59
+    },
+    {
+      "t": 169,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.15,
+      "p95_ms": 7.32,
+      "max_ms": 13.07
+    },
+    {
+      "t": 170,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.68,
+      "p95_ms": 4.81,
+      "max_ms": 5.01
+    },
+    {
+      "t": 170,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.44,
+      "p95_ms": 4.73,
+      "max_ms": 8.18
+    },
+    {
+      "t": 171,
+      "route": "payments",
+      "count": 49,
+      "status": {
+        "200": 49
+      },
+      "p50_ms": 2.65,
+      "p95_ms": 10.52,
+      "max_ms": 34.71
+    },
+    {
+      "t": 171,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.28,
+      "p95_ms": 9.78,
+      "max_ms": 34.12
+    },
+    {
+      "t": 172,
+      "route": "payments",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "p50_ms": 2.62,
+      "p95_ms": 9.18,
+      "max_ms": 10.61
+    },
+    {
+      "t": 172,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.37,
+      "p95_ms": 8.48,
+      "max_ms": 15.65
+    },
+    {
+      "t": 173,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.32,
+      "p95_ms": 10.69,
+      "max_ms": 15.96
+    },
+    {
+      "t": 173,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.18,
+      "p95_ms": 12.44,
+      "max_ms": 21.81
+    },
+    {
+      "t": 174,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.54,
+      "p95_ms": 11.41,
+      "max_ms": 16.01
+    },
+    {
+      "t": 174,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.3,
+      "p95_ms": 11.88,
+      "max_ms": 43.3
+    },
+    {
+      "t": 175,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.75,
+      "p95_ms": 3.83,
+      "max_ms": 6.06
+    },
+    {
+      "t": 175,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.62,
+      "p95_ms": 4.4,
+      "max_ms": 9.16
+    },
+    {
+      "t": 176,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.74,
+      "p95_ms": 5.33,
+      "max_ms": 7.97
+    },
+    {
+      "t": 176,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.43,
+      "p95_ms": 5.13,
+      "max_ms": 9.53
+    },
+    {
+      "t": 177,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 3.86,
+      "p95_ms": 9.37,
+      "max_ms": 15.52
+    },
+    {
+      "t": 177,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 3.84,
+      "p95_ms": 10.05,
+      "max_ms": 13.81
+    },
+    {
+      "t": 178,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.13,
+      "p95_ms": 6.77,
+      "max_ms": 9.42
+    },
+    {
+      "t": 178,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 1.94,
+      "p95_ms": 6.48,
+      "max_ms": 11.47
+    },
+    {
+      "t": 179,
+      "route": "payments",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "p50_ms": 2.27,
+      "p95_ms": 5.56,
+      "max_ms": 8.35
+    },
+    {
+      "t": 179,
+      "route": "users",
+      "count": 200,
+      "status": {
+        "200": 200
+      },
+      "p50_ms": 2.02,
+      "p95_ms": 6.16,
+      "max_ms": 12.14
+    },
+    {
+      "t": 180,
+      "route": "payments",
+      "count": 18,
+      "status": {
+        "200": 18
+      },
+      "p50_ms": 2.11,
+      "p95_ms": 3.59,
+      "max_ms": 3.59
+    },
+    {
+      "t": 180,
+      "route": "users",
+      "count": 72,
+      "status": {
+        "200": 72
+      },
+      "p50_ms": 1.94,
+      "p95_ms": 3.39,
+      "max_ms": 4.45
+    }
+  ],
+  "breaker_states": [
+    {
+      "t": 0,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 1,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 2,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 3,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 4,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 5,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 6,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 7,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 8,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 9,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 10,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 11,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 12,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 13,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 14,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 15,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 16,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 17,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 18,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 19,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 20,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 21,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 22,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 23,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 24,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 25,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 26,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 27,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 28,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 29,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 30,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 31,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 32,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 33,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 34,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 35,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 36,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 37,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 38,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 39,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 40,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 41,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 42,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 43,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 44,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 45,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 46,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 47,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 48,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 49,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 50,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 51,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 52,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 53,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 54,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 55,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 56,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 57,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 58,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 59,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 60,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 61,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 62,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 63,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 64,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 65,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 66,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 67,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 68,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 69,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 70,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 71,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 72,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 73,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 74,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 75,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 76,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 77,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 78,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 79,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 80,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 81,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 82,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 83,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 84,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 85,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 86,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 87,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 88,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 89,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 90,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 91,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 92,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 93,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 94,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 95,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 96,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 97,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 98,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 99,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 100,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 101,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 102,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 103,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 104,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 105,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 106,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 107,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 108,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 109,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 110,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 111,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 112,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 113,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 114,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 115,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 116,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 117,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 118,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 119,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 120,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 121,
+      "cb_user_service": 2.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 122,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 123,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 124,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 125,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 126,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 127,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 128,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 129,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 130,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 131,
+      "cb_user_service": 1.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 132,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 133,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 134,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 135,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 136,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 137,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 138,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 139,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 140,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 141,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 142,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 143,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 144,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 145,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 146,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 147,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 148,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 149,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 150,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 151,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 152,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 153,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 154,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 155,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 156,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 157,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 158,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 159,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 160,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 161,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 162,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 163,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 164,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 165,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 166,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 167,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 168,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 169,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 170,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 171,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 172,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 173,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 174,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 175,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 176,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 177,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 178,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 179,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    },
+    {
+      "t": 180,
+      "cb_user_service": 0.0,
+      "cb_payment_service": 0.0
+    }
+  ]
+}

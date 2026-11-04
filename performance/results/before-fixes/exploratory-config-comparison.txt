@@ -1,0 +1,19 @@
+# Exploratory comparison: one 45 s run per rate, single repeat, after 90 s of warm-up.
+# Columns: config, offered req/s, achieved req/s, failed rate, dropped iterations, p50, p95, p99 (ms), average CPU % per container.
+# Configs: default = as shipped; log-warn = WARN logging; jvm = G1 with MaxRAMPercentage=75; log+jvm = both.
+default 800 got 785.9 fail 0 drop 631 p50 1.39 p95 5.59 p99 68.97 {'k6': 48.1, 'gate': 93.6, 'redi': 11.7, 'paym': 5.6, 'user': 27.7}
+default 1500 got 1129.1 fail 0 drop 16304 p50 205.49 p95 1254.21 p99 7871.62 {'k6': 356.0, 'gate': 168.2, 'redi': 14.6, 'paym': 1.6, 'user': 94.1}
+default 2500 got 869.2 fail 0.38136 drop 68227 p50 3163.06 p95 10000.35 p99 10001.14 {'k6': 117.6, 'gate': 181.8, 'redi': 4.8, 'paym': 0.5, 'user': 23.2}
+default 4000 got 896.6 fail 0.66589 drop 132223 p50 5092.99 p95 10058.6 p99 10179.45 {'k6': 149.6, 'gate': 178.3, 'redi': 5.7, 'paym': 3.1, 'user': 4.8}
+log-warn 800 got 799.8 fail 0 drop 0 p50 1.11 p95 2.87 p99 5.19 {'k6': 37.9, 'gate': 62.6, 'redi': 8.4, 'user': 21.0, 'paym': 0.9}
+log-warn 1500 got 1234.5 fail 0 drop 11945 p50 1.58 p95 1807.24 p99 3019.13 {'k6': 109.3, 'gate': 161.5, 'redi': 14.2, 'user': 52.2, 'paym': 1.6}
+log-warn 2500 got 1816.4 fail 0 drop 27677 p50 1766.17 p95 3383.36 p99 4174.48 {'k6': 117.4, 'gate': 186.3, 'redi': 15.9, 'user': 56.8, 'paym': 2.3}
+log-warn 4000 got 1068.9 fail 0.41539 drop 120971 p50 1530.45 p95 10059.54 p99 10184.37 {'k6': 151.0, 'gate': 156.4, 'redi': 6.1, 'user': 18.1, 'paym': 1.8}
+jvm 800 got 784.2 fail 0 drop 708 p50 1.26 p95 6.32 p99 213.47 {'k6': 41.3, 'gate': 90.3, 'redi': 10.1, 'paym': 3.1, 'user': 25.0}
+jvm 1500 got 1305.1 fail 0 drop 8227 p50 820.04 p95 2143.8 p99 3506.6 {'k6': 140.5, 'gate': 186.3, 'redi': 21.9, 'paym': 7.7, 'user': 62.6}
+jvm 2500 got 1004.0 fail 0.23327 drop 63135 p50 2338.29 p95 9999.62 p99 10000.94 {'k6': 123.8, 'gate': 187.2, 'redi': 8.0, 'paym': 0.2, 'user': 50.2}
+jvm 4000 got 991.4 fail 0.53273 drop 126602 p50 6913.02 p95 10000.75 p99 10006.37 {'k6': 121.3, 'gate': 189.9, 'redi': 7.1, 'paym': 0.7, 'user': 18.5}
+log+jvm 800 got 796.4 fail 0 drop 170 p50 1.08 p95 8.13 p99 164.06 {'k6': 34.5, 'gate': 67.5, 'redi': 9.9, 'user': 22.0, 'paym': 0.7}
+log+jvm 1500 got 1486.9 fail 0 drop 549 p50 1.23 p95 48.45 p99 196.54 {'k6': 57.4, 'gate': 123.0, 'redi': 12.7, 'user': 38.4, 'paym': 1.6}
+log+jvm 2500 got 980.3 fail 0.2239 drop 61568 p50 2157.02 p95 9999.66 p99 10000.87 {'k6': 123.1, 'gate': 197.0, 'redi': 7.3, 'user': 39.8, 'paym': 2.1}
+log+jvm 4000 got 964.3 fail 0.54722 drop 127777 p50 7292.51 p95 10005.45 p99 10117.57 {'k6': 122.1, 'gate': 187.1, 'redi': 5.3, 'user': 19.1, 'paym': 0.2}

@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-11-01T15:59:47+0100",
+  "samplers_running": true,
+  "target_rps": 500,
+  "duration_s": 600,
+  "java_opts": "-Xlog:safepoint:file=/tmp/safepoint.log:time",
+  "requests": 330001,
+  "achieved_rps": 550.0,
+  "failed_rate": 0,
+  "dropped_iterations": 0,
+  "max_vus": 70,
+  "latency_ms": {
+    "max": 70.67,
+    "avg": 1.0,
+    "min": 0.05,
+    "med": 0.86,
+    "p90": 1.54,
+    "p95": 1.96,
+    "p99": 2.87
+  },
+  "success_latency_ms": {
+    "max": 70.67,
+    "avg": 1.0,
+    "min": 0.05,
+    "med": 0.86,
+    "p90": 1.54,
+    "p95": 1.96,
+    "p99": 2.87
+  },
+  "responses": {
+    "200": 300001,
+    "503": 0,
+    "other": 0
+  },
+  "control_latency_ms": {
+    "avg": 0.3146929985333331,
+    "min": 0.158646,
+    "med": 0.254689,
+    "p(90)": 0.4774708000000001,
+    "p(95)": 0.5988344499999998,
+    "p(99)": 0.9003739299999993,
+    "max": 53.282946
+  },
+  "slow_seconds": 0,
+  "slow_threshold_ms": 200,
+  "slow_second_evidence": {
+    "jvm_pause": 0,
+    "control_also_slow": 0,
+    "both": 0,
+    "neither": 0
+  },
+  "jvm_pause_total_s": 4.03,
+  "jvm_pause_longest_second_s": 0.192,
+  "scheduling_probe_max_ms": 11.4,
+  "cpu_throttled_s": 0.1
+}

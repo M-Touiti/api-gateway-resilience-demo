@@ -1,0 +1,317 @@
+{
+  "generated_at": "2026-11-01T15:35:20+0100",
+  "profile": "shipped",
+  "settings": {
+    "GW_LOG_LEVEL": "INFO",
+    "GW_JAVA_OPTS": "",
+    "GW_MAX_CONCURRENT": "512"
+  },
+  "target_rps": 500,
+  "duration_s": 600,
+  "requests": 300001,
+  "achieved_rps": 500.0,
+  "failed_rate": 0,
+  "dropped_iterations": 0,
+  "max_vus": 50,
+  "latency_ms": {
+    "p95": 2.79,
+    "p99": 4.47,
+    "max": 81.5,
+    "avg": 1.26,
+    "min": 0.05,
+    "med": 0.91,
+    "p90": 2.2
+  },
+  "success_latency_ms": {
+    "min": 0.05,
+    "med": 0.91,
+    "p90": 2.2,
+    "p95": 2.79,
+    "p99": 4.47,
+    "max": 81.5,
+    "avg": 1.26
+  },
+  "responses": {
+    "200": 300001,
+    "503": 0,
+    "other": 0
+  },
+  "containers": {
+    "k6": {
+      "cpu_avg_pct": 24.0,
+      "cpu_max_pct": 49.8,
+      "mem_max_mib": 91
+    },
+    "gateway-service": {
+      "cpu_avg_pct": 41.6,
+      "cpu_max_pct": 96.7,
+      "mem_max_mib": 307
+    },
+    "redis": {
+      "cpu_avg_pct": 5.6,
+      "cpu_max_pct": 12.0,
+      "mem_max_mib": 6
+    },
+    "payment-service": {
+      "cpu_avg_pct": 1.2,
+      "cpu_max_pct": 6.6,
+      "mem_max_mib": 141
+    },
+    "user-service": {
+      "cpu_avg_pct": 14.4,
+      "cpu_max_pct": 33.5,
+      "mem_max_mib": 158
+    }
+  },
+  "heap": [
+    {
+      "t": 15,
+      "heap_mib": 44.3,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 31,
+      "heap_mib": 57.9,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 46,
+      "heap_mib": 57.7,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 62,
+      "heap_mib": 65.1,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 77,
+      "heap_mib": 68.5,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 92,
+      "heap_mib": 68.1,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 108,
+      "heap_mib": 40.2,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 123,
+      "heap_mib": 50.8,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 138,
+      "heap_mib": 50.0,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 154,
+      "heap_mib": 55.3,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 169,
+      "heap_mib": 57.8,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 184,
+      "heap_mib": 60.5,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 200,
+      "heap_mib": 62.8,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 215,
+      "heap_mib": 64.3,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 231,
+      "heap_mib": 41.6,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 246,
+      "heap_mib": 42.9,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 261,
+      "heap_mib": 43.9,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 277,
+      "heap_mib": 41.8,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 292,
+      "heap_mib": 40.8,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 307,
+      "heap_mib": 44.9,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 323,
+      "heap_mib": 45.0,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 338,
+      "heap_mib": 47.4,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 353,
+      "heap_mib": 51.6,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 369,
+      "heap_mib": 54.7,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 384,
+      "heap_mib": 58.5,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 399,
+      "heap_mib": 62.0,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 415,
+      "heap_mib": 64.0,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 430,
+      "heap_mib": 43.5,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 446,
+      "heap_mib": 45.3,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 461,
+      "heap_mib": 49.4,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 476,
+      "heap_mib": 54.1,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 492,
+      "heap_mib": 57.4,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 507,
+      "heap_mib": 61.9,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 523,
+      "heap_mib": 64.6,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 538,
+      "heap_mib": 67.6,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 553,
+      "heap_mib": 42.0,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 569,
+      "heap_mib": 45.7,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 584,
+      "heap_mib": 48.3,
+      "healthy": true,
+      "ready": true
+    },
+    {
+      "t": 599,
+      "heap_mib": 53.2,
+      "healthy": true,
+      "ready": true
+    }
+  ],
+  "gc": {
+    "end of major GC": {
+      "count": 4,
+      "seconds": 0.272
+    },
+    "end of minor GC": {
+      "count": 1501,
+      "seconds": 3.133
+    }
+  },
+  "cpu_throttling": {
+    "nr_periods": 6010,
+    "nr_throttled": 0,
+    "throttled_usec": 0
+  }
+}

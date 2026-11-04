@@ -1,0 +1,688 @@
+{
+  "generated_at": "2026-10-31T18:43:47+0100",
+  "label": "shipped-1gw",
+  "gateways": 1,
+  "settings": {
+    "GW_LOG_LEVEL": "INFO",
+    "GW_JAVA_OPTS": ""
+  },
+  "base_urls": "http://gateway-service:8080",
+  "step_duration_s": 60,
+  "runs": [
+    {
+      "repeat": 1,
+      "target_rps": 400,
+      "requests": 23662,
+      "achieved_rps": 394.3,
+      "failed_rate": 0,
+      "dropped_iterations": 339,
+      "max_vus": 171,
+      "latency_ms": {
+        "p99": 464.46,
+        "max": 782.25,
+        "avg": 13.42,
+        "min": 0.6,
+        "med": 2.0,
+        "p90": 4.65,
+        "p95": 10.52
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 33.1,
+          "cpu_max_pct": 53.9,
+          "mem_max_mib": 83
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 63.9,
+          "cpu_max_pct": 105.4,
+          "mem_max_mib": 298
+        },
+        "redis": {
+          "cpu_avg_pct": 7.3,
+          "cpu_max_pct": 10.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 3.3,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 21.3,
+          "cpu_max_pct": 41.8,
+          "mem_max_mib": 155
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 600,
+      "requests": 32661,
+      "achieved_rps": 544.3,
+      "failed_rate": 0,
+      "dropped_iterations": 3340,
+      "max_vus": 796,
+      "latency_ms": {
+        "avg": 131.66,
+        "min": 0.22,
+        "med": 1.56,
+        "p90": 138.54,
+        "p95": 1045.59,
+        "p99": 2514.06,
+        "max": 3342.37
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 60.0,
+          "cpu_max_pct": 146.9,
+          "mem_max_mib": 278
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 102.2,
+          "cpu_max_pct": 194.3,
+          "mem_max_mib": 302
+        },
+        "redis": {
+          "cpu_avg_pct": 12.4,
+          "cpu_max_pct": 30.5,
+          "mem_max_mib": 5
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.7,
+          "cpu_max_pct": 3.0,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 24.9,
+          "cpu_max_pct": 47.2,
+          "mem_max_mib": 160
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 800,
+      "requests": 46176,
+      "achieved_rps": 767.0,
+      "failed_rate": 0,
+      "dropped_iterations": 1824,
+      "max_vus": 359,
+      "latency_ms": {
+        "p90": 6.49,
+        "p95": 27.93,
+        "p99": 598.13,
+        "max": 2507.2,
+        "avg": 21.39,
+        "min": 0.58,
+        "med": 1.52
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 80.9,
+          "cpu_max_pct": 394.3,
+          "mem_max_mib": 99
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 117.6,
+          "cpu_max_pct": 243.2,
+          "mem_max_mib": 302
+        },
+        "redis": {
+          "cpu_avg_pct": 10.3,
+          "cpu_max_pct": 15.5,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.4,
+          "cpu_max_pct": 4.1,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 34.5,
+          "cpu_max_pct": 117.9,
+          "mem_max_mib": 167
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1000,
+      "requests": 55546,
+      "achieved_rps": 925.7,
+      "failed_rate": 0,
+      "dropped_iterations": 4455,
+      "max_vus": 743,
+      "latency_ms": {
+        "p90": 70.22,
+        "p95": 272.45,
+        "p99": 2050.54,
+        "max": 2976.73,
+        "avg": 66.02,
+        "min": 0.18,
+        "med": 1.98
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 72.2,
+          "cpu_max_pct": 189.4,
+          "mem_max_mib": 356
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 130.5,
+          "cpu_max_pct": 206.5,
+          "mem_max_mib": 302
+        },
+        "redis": {
+          "cpu_avg_pct": 14.0,
+          "cpu_max_pct": 21.2,
+          "mem_max_mib": 7
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.3,
+          "cpu_max_pct": 5.6,
+          "mem_max_mib": 123
+        },
+        "user-service": {
+          "cpu_avg_pct": 40.9,
+          "cpu_max_pct": 85.0,
+          "mem_max_mib": 169
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1250,
+      "requests": 74374,
+      "achieved_rps": 1235.6,
+      "failed_rate": 0,
+      "dropped_iterations": 627,
+      "max_vus": 470,
+      "latency_ms": {
+        "p90": 155.52,
+        "p95": 227.36,
+        "p99": 358.2,
+        "max": 637.2,
+        "avg": 43.56,
+        "min": 0.18,
+        "med": 3.39
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 88.5,
+          "cpu_max_pct": 121.4,
+          "mem_max_mib": 234
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 165.1,
+          "cpu_max_pct": 216.2,
+          "mem_max_mib": 302
+        },
+        "redis": {
+          "cpu_avg_pct": 14.7,
+          "cpu_max_pct": 18.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.4,
+          "cpu_max_pct": 4.2,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 51.6,
+          "cpu_max_pct": 73.8,
+          "mem_max_mib": 171
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 400,
+      "requests": 23408,
+      "achieved_rps": 390.1,
+      "failed_rate": 0,
+      "dropped_iterations": 592,
+      "max_vus": 264,
+      "latency_ms": {
+        "min": 0.88,
+        "med": 2.12,
+        "p90": 4.27,
+        "p95": 6.93,
+        "p99": 880.16,
+        "max": 2164.67,
+        "avg": 23.87
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 36.0,
+          "cpu_max_pct": 75.1,
+          "mem_max_mib": 109
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 70.0,
+          "cpu_max_pct": 131.4,
+          "mem_max_mib": 295
+        },
+        "redis": {
+          "cpu_avg_pct": 7.2,
+          "cpu_max_pct": 12.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.6,
+          "cpu_max_pct": 2.8,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 21.5,
+          "cpu_max_pct": 38.9,
+          "mem_max_mib": 154
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 600,
+      "requests": 34305,
+      "achieved_rps": 571.7,
+      "failed_rate": 0,
+      "dropped_iterations": 1695,
+      "max_vus": 385,
+      "latency_ms": {
+        "max": 2932.97,
+        "avg": 34.68,
+        "min": -0.29,
+        "med": 1.54,
+        "p90": 4.03,
+        "p95": 23.55,
+        "p99": 1224.97
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 73.4,
+          "cpu_max_pct": 342.0,
+          "mem_max_mib": 149
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 88.6,
+          "cpu_max_pct": 237.7,
+          "mem_max_mib": 294
+        },
+        "redis": {
+          "cpu_avg_pct": 9.9,
+          "cpu_max_pct": 23.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.7,
+          "cpu_max_pct": 9.0,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 26.1,
+          "cpu_max_pct": 40.6,
+          "mem_max_mib": 157
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 800,
+      "requests": 44338,
+      "achieved_rps": 738.9,
+      "failed_rate": 0,
+      "dropped_iterations": 3663,
+      "max_vus": 913,
+      "latency_ms": {
+        "p90": 45.99,
+        "p95": 526.96,
+        "p99": 2645.53,
+        "max": 3640.47,
+        "avg": 101.52,
+        "min": 0.18,
+        "med": 1.79
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 76.6,
+          "cpu_max_pct": 286.6,
+          "mem_max_mib": 285
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 114.3,
+          "cpu_max_pct": 191.4,
+          "mem_max_mib": 296
+        },
+        "redis": {
+          "cpu_avg_pct": 15.9,
+          "cpu_max_pct": 77.3,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 5.1,
+          "cpu_max_pct": 31.4,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 36.4,
+          "cpu_max_pct": 55.7,
+          "mem_max_mib": 170
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1000,
+      "requests": 59853,
+      "achieved_rps": 997.5,
+      "failed_rate": 0,
+      "dropped_iterations": 148,
+      "max_vus": 181,
+      "latency_ms": {
+        "avg": 7.82,
+        "min": 0.19,
+        "med": 1.82,
+        "p90": 13.81,
+        "p95": 39.42,
+        "p99": 120.75,
+        "max": 283.69
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 61.5,
+          "cpu_max_pct": 90.5,
+          "mem_max_mib": 107
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 126.1,
+          "cpu_max_pct": 196.7,
+          "mem_max_mib": 298
+        },
+        "redis": {
+          "cpu_avg_pct": 14.5,
+          "cpu_max_pct": 35.4,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.6,
+          "cpu_max_pct": 4.7,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 36.3,
+          "cpu_max_pct": 70.8,
+          "mem_max_mib": 172
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1250,
+      "requests": 75001,
+      "achieved_rps": 1250.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 125,
+      "latency_ms": {
+        "p90": 3.03,
+        "p95": 5.33,
+        "p99": 29.67,
+        "max": 97.12,
+        "avg": 2.41,
+        "min": 0.11,
+        "med": 1.38
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 56.7,
+          "cpu_max_pct": 93.2,
+          "mem_max_mib": 85
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 118.4,
+          "cpu_max_pct": 193.6,
+          "mem_max_mib": 298
+        },
+        "redis": {
+          "cpu_avg_pct": 11.3,
+          "cpu_max_pct": 17.5,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.1,
+          "cpu_max_pct": 4.2,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 32.4,
+          "cpu_max_pct": 50.7,
+          "mem_max_mib": 174
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 400,
+      "requests": 24001,
+      "achieved_rps": 400.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 50,
+      "latency_ms": {
+        "min": -1.08,
+        "med": 1.17,
+        "p90": 2.6,
+        "p95": 3.36,
+        "p99": 5.2,
+        "max": 14.96,
+        "avg": 1.52
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 23.5,
+          "cpu_max_pct": 35.4,
+          "mem_max_mib": 40
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 39.6,
+          "cpu_max_pct": 64.9,
+          "mem_max_mib": 292
+        },
+        "redis": {
+          "cpu_avg_pct": 4.4,
+          "cpu_max_pct": 6.8,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.4,
+          "cpu_max_pct": 4.6,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 11.4,
+          "cpu_max_pct": 15.6,
+          "mem_max_mib": 151
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 600,
+      "requests": 36001,
+      "achieved_rps": 600.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 60,
+      "latency_ms": {
+        "p90": 2.17,
+        "p95": 2.77,
+        "p99": 4.83,
+        "max": 16.6,
+        "avg": 1.42,
+        "min": 0.12,
+        "med": 1.15
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 29.3,
+          "cpu_max_pct": 46.7,
+          "mem_max_mib": 48
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 51.1,
+          "cpu_max_pct": 77.7,
+          "mem_max_mib": 294
+        },
+        "redis": {
+          "cpu_avg_pct": 6.2,
+          "cpu_max_pct": 10.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.7,
+          "cpu_max_pct": 3.7,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 17.5,
+          "cpu_max_pct": 33.4,
+          "mem_max_mib": 153
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 800,
+      "requests": 48001,
+      "achieved_rps": 800.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 80,
+      "latency_ms": {
+        "p99": 5.53,
+        "max": 19.42,
+        "avg": 1.46,
+        "min": 0.21,
+        "med": 1.18,
+        "p90": 2.14,
+        "p95": 2.99
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 37.9,
+          "cpu_max_pct": 58.6,
+          "mem_max_mib": 60
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 75.6,
+          "cpu_max_pct": 117.9,
+          "mem_max_mib": 294
+        },
+        "redis": {
+          "cpu_avg_pct": 8.8,
+          "cpu_max_pct": 16.5,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 3.5,
+          "cpu_max_pct": 5.2,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 20.8,
+          "cpu_max_pct": 24.1,
+          "mem_max_mib": 152
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1000,
+      "requests": 60002,
+      "achieved_rps": 999.7,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 100,
+      "latency_ms": {
+        "med": 1.21,
+        "p90": 2.33,
+        "p95": 3.42,
+        "p99": 7.48,
+        "max": 40.88,
+        "avg": 1.6,
+        "min": 0.84
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 41.1,
+          "cpu_max_pct": 71.8,
+          "mem_max_mib": 70
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 98.2,
+          "cpu_max_pct": 159.5,
+          "mem_max_mib": 298
+        },
+        "redis": {
+          "cpu_avg_pct": 10.2,
+          "cpu_max_pct": 16.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.2,
+          "cpu_max_pct": 5.9,
+          "mem_max_mib": 124
+        },
+        "user-service": {
+          "cpu_avg_pct": 23.1,
+          "cpu_max_pct": 28.6,
+          "mem_max_mib": 155
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1250,
+      "requests": 74513,
+      "achieved_rps": 1241.9,
+      "failed_rate": 0,
+      "dropped_iterations": 488,
+      "max_vus": 408,
+      "latency_ms": {
+        "min": -1.31,
+        "med": 1.39,
+        "p90": 4.84,
+        "p95": 26.09,
+        "p99": 281.03,
+        "max": 524.25,
+        "avg": 10.43
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 55.5,
+          "cpu_max_pct": 135.3,
+          "mem_max_mib": 209
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 118.7,
+          "cpu_max_pct": 202.4,
+          "mem_max_mib": 300
+        },
+        "redis": {
+          "cpu_avg_pct": 13.4,
+          "cpu_max_pct": 22.3,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.3,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 31.8,
+          "cpu_max_pct": 83.0,
+          "mem_max_mib": 160
+        }
+      }
+    }
+  ]
+}
