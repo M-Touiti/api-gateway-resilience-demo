@@ -1,0 +1,4 @@
+# Interrupted load-shedding run on the fixed code. The machine ran low on memory, so the run stopped after two steps of the first of two configurations.
+# One 60 s run per rate after 90 s of warm-up. Shedding on (512 per route). No rate-limit, shed or other failures. Latency in ms.
+{"repeat": 1, "target_rps": 1500, "achieved_rps": 1496.6, "failed_rate": 0, "dropped_iterations": 194, "avg": 6.16, "min": 0.09, "med": 1.78, "p90": 8.36, "p95": 28.06, "p99": 89.65, "max": 391.36}
+{"repeat": 1, "target_rps": 2000, "achieved_rps": 1981.9, "failed_rate": 0, "dropped_iterations": 1072, "p99": 308.58, "max": 662.61, "avg": 21.93, "min": 0.09, "med": 2.03, "p90": 66.77, "p95": 132.66}

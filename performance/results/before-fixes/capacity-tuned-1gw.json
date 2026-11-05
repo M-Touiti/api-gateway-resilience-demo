@@ -1,0 +1,688 @@
+{
+  "generated_at": "2026-10-31T19:28:28+0100",
+  "label": "tuned-1gw",
+  "gateways": 1,
+  "settings": {
+    "GW_LOG_LEVEL": "WARN",
+    "GW_JAVA_OPTS": "-XX:+UseG1GC -XX:MaxRAMPercentage=75"
+  },
+  "base_urls": "http://gateway-service:8080",
+  "step_duration_s": 60,
+  "runs": [
+    {
+      "repeat": 1,
+      "target_rps": 800,
+      "requests": 48000,
+      "achieved_rps": 799.9,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 80,
+      "latency_ms": {
+        "max": 35.78,
+        "avg": 1.44,
+        "min": 0.07,
+        "med": 1.12,
+        "p90": 2.14,
+        "p95": 2.89,
+        "p99": 6.54
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 34.9,
+          "cpu_max_pct": 45.4,
+          "mem_max_mib": 58
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 76.6,
+          "cpu_max_pct": 121.7,
+          "mem_max_mib": 302
+        },
+        "redis": {
+          "cpu_avg_pct": 10.3,
+          "cpu_max_pct": 15.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 3.9,
+          "cpu_max_pct": 5.3,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 24.6,
+          "cpu_max_pct": 43.5,
+          "mem_max_mib": 154
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1000,
+      "requests": 59139,
+      "achieved_rps": 985.6,
+      "failed_rate": 0,
+      "dropped_iterations": 862,
+      "max_vus": 137,
+      "latency_ms": {
+        "avg": 4.39,
+        "min": 0.05,
+        "med": 1.06,
+        "p90": 2.36,
+        "p95": 3.85,
+        "p99": 75.19,
+        "max": 888.3
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 35.6,
+          "cpu_max_pct": 47.1,
+          "mem_max_mib": 86
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 82.0,
+          "cpu_max_pct": 148.4,
+          "mem_max_mib": 296
+        },
+        "redis": {
+          "cpu_avg_pct": 9.3,
+          "cpu_max_pct": 15.9,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.2,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 25.2,
+          "cpu_max_pct": 59.1,
+          "mem_max_mib": 158
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1250,
+      "requests": 71043,
+      "achieved_rps": 1183.9,
+      "failed_rate": 0,
+      "dropped_iterations": 3958,
+      "max_vus": 839,
+      "latency_ms": {
+        "p95": 297.8,
+        "p99": 784.89,
+        "max": 3626.6,
+        "avg": 42.94,
+        "min": 0.09,
+        "med": 1.19,
+        "p90": 6.28
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 51.7,
+          "cpu_max_pct": 138.1,
+          "mem_max_mib": 407
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 110.9,
+          "cpu_max_pct": 201.4,
+          "mem_max_mib": 412
+        },
+        "redis": {
+          "cpu_avg_pct": 10.2,
+          "cpu_max_pct": 17.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 3.9,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 34.9,
+          "cpu_max_pct": 73.0,
+          "mem_max_mib": 171
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1500,
+      "requests": 88889,
+      "achieved_rps": 1481.3,
+      "failed_rate": 0,
+      "dropped_iterations": 1112,
+      "max_vus": 727,
+      "latency_ms": {
+        "max": 829.61,
+        "avg": 24.73,
+        "min": 0.09,
+        "med": 1.24,
+        "p90": 7.87,
+        "p95": 234.83,
+        "p99": 467.07
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 62.7,
+          "cpu_max_pct": 150.3,
+          "mem_max_mib": 355
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 116.2,
+          "cpu_max_pct": 203.5,
+          "mem_max_mib": 446
+        },
+        "redis": {
+          "cpu_avg_pct": 12.4,
+          "cpu_max_pct": 18.4,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.7,
+          "cpu_max_pct": 4.9,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 43.6,
+          "cpu_max_pct": 74.1,
+          "mem_max_mib": 175
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 2000,
+      "requests": 91593,
+      "achieved_rps": 1504.9,
+      "failed_rate": 0,
+      "dropped_iterations": 28408,
+      "max_vus": 4000,
+      "latency_ms": {
+        "p95": 3959.34,
+        "p99": 5044.23,
+        "max": 8134.58,
+        "avg": 1849.52,
+        "min": 1.27,
+        "med": 1779.14,
+        "p90": 3400.95
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 136.5,
+          "cpu_max_pct": 212.2,
+          "mem_max_mib": 1765
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 189.9,
+          "cpu_max_pct": 211.7,
+          "mem_max_mib": 1008
+        },
+        "redis": {
+          "cpu_avg_pct": 15.2,
+          "cpu_max_pct": 20.8,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.8,
+          "cpu_max_pct": 5.2,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 70.5,
+          "cpu_max_pct": 116.1,
+          "mem_max_mib": 258
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 800,
+      "requests": 48001,
+      "achieved_rps": 799.9,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 80,
+      "latency_ms": {
+        "avg": 1.32,
+        "min": 0.07,
+        "med": 1.02,
+        "p90": 1.91,
+        "p95": 2.52,
+        "p99": 6.33,
+        "max": 42.52
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 33.0,
+          "cpu_max_pct": 54.0,
+          "mem_max_mib": 58
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 68.0,
+          "cpu_max_pct": 177.2,
+          "mem_max_mib": 485
+        },
+        "redis": {
+          "cpu_avg_pct": 7.7,
+          "cpu_max_pct": 12.4,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.0,
+          "cpu_max_pct": 6.6,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 21.0,
+          "cpu_max_pct": 41.1,
+          "mem_max_mib": 153
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1000,
+      "requests": 60001,
+      "achieved_rps": 1000.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 100,
+      "latency_ms": {
+        "p99": 5.94,
+        "max": 56.66,
+        "avg": 1.33,
+        "min": 0.1,
+        "med": 1.02,
+        "p90": 1.88,
+        "p95": 2.58
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 37.7,
+          "cpu_max_pct": 72.2,
+          "mem_max_mib": 70
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 81.8,
+          "cpu_max_pct": 160.5,
+          "mem_max_mib": 487
+        },
+        "redis": {
+          "cpu_avg_pct": 11.0,
+          "cpu_max_pct": 20.2,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 3.3,
+          "cpu_max_pct": 6.9,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 24.1,
+          "cpu_max_pct": 40.6,
+          "mem_max_mib": 153
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1250,
+      "requests": 74835,
+      "achieved_rps": 1247.1,
+      "failed_rate": 0,
+      "dropped_iterations": 165,
+      "max_vus": 220,
+      "latency_ms": {
+        "min": 0.06,
+        "med": 1.11,
+        "p90": 2.15,
+        "p95": 3.41,
+        "p99": 43.31,
+        "max": 356.73,
+        "avg": 2.82
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 45.7,
+          "cpu_max_pct": 86.6,
+          "mem_max_mib": 131
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 102.9,
+          "cpu_max_pct": 207.8,
+          "mem_max_mib": 488
+        },
+        "redis": {
+          "cpu_avg_pct": 11.0,
+          "cpu_max_pct": 20.8,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.2,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 31.2,
+          "cpu_max_pct": 48.3,
+          "mem_max_mib": 156
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1500,
+      "requests": 89178,
+      "achieved_rps": 1486.2,
+      "failed_rate": 0,
+      "dropped_iterations": 823,
+      "max_vus": 552,
+      "latency_ms": {
+        "avg": 13.5,
+        "min": 0.07,
+        "med": 1.22,
+        "p90": 5.28,
+        "p95": 44.88,
+        "p99": 328.37,
+        "max": 637.48
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 56.3,
+          "cpu_max_pct": 114.3,
+          "mem_max_mib": 280
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 120.0,
+          "cpu_max_pct": 210.7,
+          "mem_max_mib": 495
+        },
+        "redis": {
+          "cpu_avg_pct": 13.7,
+          "cpu_max_pct": 21.0,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.6,
+          "cpu_max_pct": 9.0,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 38.7,
+          "cpu_max_pct": 67.9,
+          "mem_max_mib": 161
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 2000,
+      "requests": 84497,
+      "achieved_rps": 1384.1,
+      "failed_rate": 1e-05,
+      "dropped_iterations": 35482,
+      "max_vus": 4000,
+      "latency_ms": {
+        "p90": 4007.07,
+        "p95": 4550.26,
+        "p99": 5535.74,
+        "max": 8313.33,
+        "avg": 2056.44,
+        "min": 1.3,
+        "med": 1791.41
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 114.1,
+          "cpu_max_pct": 202.5,
+          "mem_max_mib": 1809
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 191.5,
+          "cpu_max_pct": 212.5,
+          "mem_max_mib": 992
+        },
+        "redis": {
+          "cpu_avg_pct": 17.2,
+          "cpu_max_pct": 23.2,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 4.6,
+          "cpu_max_pct": 7.3,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 56.7,
+          "cpu_max_pct": 116.5,
+          "mem_max_mib": 260
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 800,
+      "requests": 48001,
+      "achieved_rps": 800.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 80,
+      "latency_ms": {
+        "avg": 1.26,
+        "min": 0.19,
+        "med": 1.02,
+        "p90": 1.89,
+        "p95": 2.43,
+        "p99": 4.64,
+        "max": 16.14
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 35.1,
+          "cpu_max_pct": 56.0,
+          "mem_max_mib": 58
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 63.7,
+          "cpu_max_pct": 112.7,
+          "mem_max_mib": 420
+        },
+        "redis": {
+          "cpu_avg_pct": 7.5,
+          "cpu_max_pct": 12.2,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.9,
+          "cpu_max_pct": 4.5,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 19.5,
+          "cpu_max_pct": 36.0,
+          "mem_max_mib": 148
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1000,
+      "requests": 58183,
+      "achieved_rps": 969.6,
+      "failed_rate": 0,
+      "dropped_iterations": 1818,
+      "max_vus": 193,
+      "latency_ms": {
+        "med": 1.03,
+        "p90": 2.06,
+        "p95": 3.39,
+        "p99": 139.48,
+        "max": 2172.42,
+        "avg": 7.84,
+        "min": 0.08
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 40.9,
+          "cpu_max_pct": 97.6,
+          "mem_max_mib": 112
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 92.0,
+          "cpu_max_pct": 203.0,
+          "mem_max_mib": 422
+        },
+        "redis": {
+          "cpu_avg_pct": 9.6,
+          "cpu_max_pct": 17.4,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.7,
+          "cpu_max_pct": 13.8,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 26.0,
+          "cpu_max_pct": 63.3,
+          "mem_max_mib": 156
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1250,
+      "requests": 74813,
+      "achieved_rps": 1246.8,
+      "failed_rate": 0,
+      "dropped_iterations": 188,
+      "max_vus": 248,
+      "latency_ms": {
+        "p99": 118.13,
+        "max": 298.28,
+        "avg": 4.13,
+        "min": 0.04,
+        "med": 1.14,
+        "p90": 2.14,
+        "p95": 3.87
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 46.9,
+          "cpu_max_pct": 103.8,
+          "mem_max_mib": 138
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 88.9,
+          "cpu_max_pct": 144.5,
+          "mem_max_mib": 422
+        },
+        "redis": {
+          "cpu_avg_pct": 10.1,
+          "cpu_max_pct": 16.2,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.4,
+          "cpu_max_pct": 3.2,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 29.2,
+          "cpu_max_pct": 63.6,
+          "mem_max_mib": 159
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1500,
+      "requests": 89309,
+      "achieved_rps": 1488.4,
+      "failed_rate": 0,
+      "dropped_iterations": 692,
+      "max_vus": 541,
+      "latency_ms": {
+        "avg": 10.34,
+        "min": 0.12,
+        "med": 1.21,
+        "p90": 3.07,
+        "p95": 38.11,
+        "p99": 255.07,
+        "max": 687.96
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 62.4,
+          "cpu_max_pct": 155.3,
+          "mem_max_mib": 268
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 119.4,
+          "cpu_max_pct": 203.9,
+          "mem_max_mib": 425
+        },
+        "redis": {
+          "cpu_avg_pct": 12.1,
+          "cpu_max_pct": 17.2,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.3,
+          "cpu_max_pct": 4.1,
+          "mem_max_mib": 120
+        },
+        "user-service": {
+          "cpu_avg_pct": 37.7,
+          "cpu_max_pct": 71.2,
+          "mem_max_mib": 169
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 2000,
+      "requests": 97146,
+      "achieved_rps": 1590.0,
+      "failed_rate": 0,
+      "dropped_iterations": 22855,
+      "max_vus": 4000,
+      "latency_ms": {
+        "med": 1214.39,
+        "p90": 3095.69,
+        "p95": 3722.14,
+        "p99": 4606.81,
+        "max": 6339.65,
+        "avg": 1391.16,
+        "min": 0.79
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 150.3,
+          "cpu_max_pct": 215.7,
+          "mem_max_mib": 1488
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 203.2,
+          "cpu_max_pct": 212.5,
+          "mem_max_mib": 968
+        },
+        "redis": {
+          "cpu_avg_pct": 15.3,
+          "cpu_max_pct": 21.9,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.6,
+          "cpu_max_pct": 5.1,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 68.9,
+          "cpu_max_pct": 121.4,
+          "mem_max_mib": 255
+        }
+      }
+    }
+  ]
+}

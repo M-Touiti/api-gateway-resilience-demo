@@ -1,0 +1,900 @@
+{
+  "generated_at": "2026-11-01T04:38:53+0100",
+  "label": "shipped-1gw",
+  "gateways": 1,
+  "settings": {
+    "GW_LOG_LEVEL": "INFO",
+    "GW_JAVA_OPTS": "",
+    "GW_MAX_CONCURRENT": "512"
+  },
+  "base_urls": "http://gateway-service:8080",
+  "step_duration_s": 60,
+  "repeats_planned": 3,
+  "runs": [
+    {
+      "repeat": 1,
+      "target_rps": 500,
+      "requests": 30001,
+      "achieved_rps": 500.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 50,
+      "latency_ms": {
+        "p95": 1.73,
+        "p99": 2.84,
+        "max": 19.58,
+        "avg": 1.02,
+        "min": -1.31,
+        "med": 0.9,
+        "p90": 1.32
+      },
+      "success_latency_ms": {
+        "p90": 1.32,
+        "p95": 1.73,
+        "p99": 2.84,
+        "max": 19.58,
+        "avg": 1.02,
+        "min": -1.31,
+        "med": 0.9
+      },
+      "responses": {
+        "200": 30001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 19.3,
+          "cpu_max_pct": 20.8,
+          "mem_max_mib": 43
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 35.1,
+          "cpu_max_pct": 52.6,
+          "mem_max_mib": 245
+        },
+        "redis": {
+          "cpu_avg_pct": 4.3,
+          "cpu_max_pct": 6.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.6,
+          "cpu_max_pct": 3.8,
+          "mem_max_mib": 121
+        },
+        "user-service": {
+          "cpu_avg_pct": 11.1,
+          "cpu_max_pct": 16.8,
+          "mem_max_mib": 144
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1000,
+      "requests": 60001,
+      "achieved_rps": 1000.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 100,
+      "latency_ms": {
+        "avg": 1.23,
+        "min": 0.06,
+        "med": 0.88,
+        "p90": 1.38,
+        "p95": 1.98,
+        "p99": 4.48,
+        "max": 112.0
+      },
+      "success_latency_ms": {
+        "p99": 4.48,
+        "max": 112.0,
+        "avg": 1.23,
+        "min": 0.06,
+        "med": 0.88,
+        "p90": 1.38,
+        "p95": 1.98
+      },
+      "responses": {
+        "200": 60001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 33.3,
+          "cpu_max_pct": 45.1,
+          "mem_max_mib": 72
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 60.9,
+          "cpu_max_pct": 92.4,
+          "mem_max_mib": 270
+        },
+        "redis": {
+          "cpu_avg_pct": 6.9,
+          "cpu_max_pct": 10.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.5,
+          "cpu_max_pct": 3.3,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 21.2,
+          "cpu_max_pct": 34.8,
+          "mem_max_mib": 149
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 1500,
+      "requests": 90001,
+      "achieved_rps": 1500.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 150,
+      "latency_ms": {
+        "med": 0.88,
+        "p90": 1.88,
+        "p95": 3.92,
+        "p99": 32.39,
+        "max": 81.79,
+        "avg": 1.84,
+        "min": 0.06
+      },
+      "success_latency_ms": {
+        "avg": 1.84,
+        "min": 0.06,
+        "med": 0.88,
+        "p90": 1.88,
+        "p95": 3.92,
+        "p99": 32.39,
+        "max": 81.79
+      },
+      "responses": {
+        "200": 90001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 42.9,
+          "cpu_max_pct": 58.0,
+          "mem_max_mib": 101
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 93.2,
+          "cpu_max_pct": 133.1,
+          "mem_max_mib": 274
+        },
+        "redis": {
+          "cpu_avg_pct": 11.6,
+          "cpu_max_pct": 16.4,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.6,
+          "cpu_max_pct": 4.7,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 32.6,
+          "cpu_max_pct": 51.8,
+          "mem_max_mib": 158
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 2000,
+      "requests": 119959,
+      "achieved_rps": 1999.2,
+      "failed_rate": 0,
+      "dropped_iterations": 42,
+      "max_vus": 218,
+      "latency_ms": {
+        "med": 0.99,
+        "p90": 5.5,
+        "p95": 18.11,
+        "p99": 52.26,
+        "max": 145.2,
+        "avg": 3.56,
+        "min": -0.52
+      },
+      "success_latency_ms": {
+        "avg": 3.56,
+        "min": -0.52,
+        "med": 0.99,
+        "p90": 5.5,
+        "p95": 18.11,
+        "p99": 52.26,
+        "max": 145.2
+      },
+      "responses": {
+        "200": 119959,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 55.9,
+          "cpu_max_pct": 95.1,
+          "mem_max_mib": 145
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 112.9,
+          "cpu_max_pct": 159.9,
+          "mem_max_mib": 284
+        },
+        "redis": {
+          "cpu_avg_pct": 11.7,
+          "cpu_max_pct": 17.8,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.1,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 38.5,
+          "cpu_max_pct": 62.1,
+          "mem_max_mib": 161
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "target_rps": 2500,
+      "requests": 149648,
+      "achieved_rps": 2493.9,
+      "failed_rate": 0,
+      "dropped_iterations": 353,
+      "max_vus": 376,
+      "latency_ms": {
+        "min": -0.91,
+        "med": 1.22,
+        "p90": 17.66,
+        "p95": 44.94,
+        "p99": 104.98,
+        "max": 1156.77,
+        "avg": 7.77
+      },
+      "success_latency_ms": {
+        "max": 1156.77,
+        "avg": 7.77,
+        "min": -0.91,
+        "med": 1.22,
+        "p90": 17.66,
+        "p95": 44.94,
+        "p99": 104.98
+      },
+      "responses": {
+        "200": 149648,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 78.0,
+          "cpu_max_pct": 106.7,
+          "mem_max_mib": 218
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 146.7,
+          "cpu_max_pct": 177.3,
+          "mem_max_mib": 282
+        },
+        "redis": {
+          "cpu_avg_pct": 14.8,
+          "cpu_max_pct": 17.8,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.6,
+          "cpu_max_pct": 4.0,
+          "mem_max_mib": 122
+        },
+        "user-service": {
+          "cpu_avg_pct": 51.7,
+          "cpu_max_pct": 67.5,
+          "mem_max_mib": 167
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 500,
+      "requests": 30001,
+      "achieved_rps": 500.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 50,
+      "latency_ms": {
+        "avg": 1.06,
+        "min": -0.96,
+        "med": 0.92,
+        "p90": 1.39,
+        "p95": 1.83,
+        "p99": 3.12,
+        "max": 14.52
+      },
+      "success_latency_ms": {
+        "avg": 1.06,
+        "min": -0.96,
+        "med": 0.92,
+        "p90": 1.39,
+        "p95": 1.83,
+        "p99": 3.12,
+        "max": 14.52
+      },
+      "responses": {
+        "200": 30001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 19.8,
+          "cpu_max_pct": 31.1,
+          "mem_max_mib": 43
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 31.7,
+          "cpu_max_pct": 47.1,
+          "mem_max_mib": 254
+        },
+        "redis": {
+          "cpu_avg_pct": 3.9,
+          "cpu_max_pct": 5.8,
+          "mem_max_mib": 4
+        },
+        "user-service": {
+          "cpu_avg_pct": 12.0,
+          "cpu_max_pct": 17.4,
+          "mem_max_mib": 146
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.5,
+          "cpu_max_pct": 3.3,
+          "mem_max_mib": 120
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1000,
+      "requests": 60001,
+      "achieved_rps": 1000.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 100,
+      "latency_ms": {
+        "avg": 1.19,
+        "min": 0.06,
+        "med": 0.88,
+        "p90": 1.37,
+        "p95": 2.04,
+        "p99": 5.15,
+        "max": 85.5
+      },
+      "success_latency_ms": {
+        "max": 85.5,
+        "avg": 1.19,
+        "min": 0.06,
+        "med": 0.88,
+        "p90": 1.37,
+        "p95": 2.04,
+        "p99": 5.15
+      },
+      "responses": {
+        "200": 60001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 31.1,
+          "cpu_max_pct": 33.2,
+          "mem_max_mib": 70
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 64.1,
+          "cpu_max_pct": 102.3,
+          "mem_max_mib": 268
+        },
+        "redis": {
+          "cpu_avg_pct": 7.0,
+          "cpu_max_pct": 12.2,
+          "mem_max_mib": 4
+        },
+        "user-service": {
+          "cpu_avg_pct": 19.9,
+          "cpu_max_pct": 33.3,
+          "mem_max_mib": 151
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.1,
+          "cpu_max_pct": 4.1,
+          "mem_max_mib": 121
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 1500,
+      "requests": 89961,
+      "achieved_rps": 1499.3,
+      "failed_rate": 0,
+      "dropped_iterations": 40,
+      "max_vus": 173,
+      "latency_ms": {
+        "p95": 4.02,
+        "p99": 36.64,
+        "max": 155.67,
+        "avg": 2.06,
+        "min": 0.03,
+        "med": 0.9,
+        "p90": 1.95
+      },
+      "success_latency_ms": {
+        "p95": 4.02,
+        "p99": 36.64,
+        "max": 155.67,
+        "avg": 2.06,
+        "min": 0.03,
+        "med": 0.9,
+        "p90": 1.95
+      },
+      "responses": {
+        "200": 89961,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 44.5,
+          "cpu_max_pct": 70.4,
+          "mem_max_mib": 109
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 93.3,
+          "cpu_max_pct": 151.9,
+          "mem_max_mib": 285
+        },
+        "redis": {
+          "cpu_avg_pct": 10.8,
+          "cpu_max_pct": 18.4,
+          "mem_max_mib": 4
+        },
+        "user-service": {
+          "cpu_avg_pct": 31.0,
+          "cpu_max_pct": 56.7,
+          "mem_max_mib": 157
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.2,
+          "cpu_max_pct": 4.0,
+          "mem_max_mib": 121
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 2000,
+      "requests": 120001,
+      "achieved_rps": 1999.9,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 200,
+      "latency_ms": {
+        "med": 1.01,
+        "p90": 4.89,
+        "p95": 13.5,
+        "p99": 49.27,
+        "max": 83.87,
+        "avg": 3.21,
+        "min": 0.06
+      },
+      "success_latency_ms": {
+        "avg": 3.21,
+        "min": 0.06,
+        "med": 1.01,
+        "p90": 4.89,
+        "p95": 13.5,
+        "p99": 49.27,
+        "max": 83.87
+      },
+      "responses": {
+        "200": 120001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 60.9,
+          "cpu_max_pct": 82.0,
+          "mem_max_mib": 132
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 119.7,
+          "cpu_max_pct": 166.4,
+          "mem_max_mib": 278
+        },
+        "redis": {
+          "cpu_avg_pct": 14.4,
+          "cpu_max_pct": 19.4,
+          "mem_max_mib": 4
+        },
+        "user-service": {
+          "cpu_avg_pct": 38.1,
+          "cpu_max_pct": 53.9,
+          "mem_max_mib": 163
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.0,
+          "cpu_max_pct": 3.0,
+          "mem_max_mib": 124
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "target_rps": 2500,
+      "requests": 149781,
+      "achieved_rps": 2496.2,
+      "failed_rate": 0,
+      "dropped_iterations": 220,
+      "max_vus": 341,
+      "latency_ms": {
+        "p99": 87.94,
+        "max": 215.62,
+        "avg": 7.44,
+        "min": 0.05,
+        "med": 1.26,
+        "p90": 20.98,
+        "p95": 46.96
+      },
+      "success_latency_ms": {
+        "p99": 87.94,
+        "max": 215.62,
+        "avg": 7.44,
+        "min": 0.05,
+        "med": 1.26,
+        "p90": 20.98,
+        "p95": 46.96
+      },
+      "responses": {
+        "200": 149781,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 80.8,
+          "cpu_max_pct": 107.4,
+          "mem_max_mib": 196
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 157.4,
+          "cpu_max_pct": 188.9,
+          "mem_max_mib": 282
+        },
+        "redis": {
+          "cpu_avg_pct": 15.4,
+          "cpu_max_pct": 17.3,
+          "mem_max_mib": 4
+        },
+        "user-service": {
+          "cpu_avg_pct": 52.5,
+          "cpu_max_pct": 68.2,
+          "mem_max_mib": 170
+        },
+        "payment-service": {
+          "cpu_avg_pct": 1.1,
+          "cpu_max_pct": 3.6,
+          "mem_max_mib": 122
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 500,
+      "requests": 30001,
+      "achieved_rps": 500.0,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 50,
+      "latency_ms": {
+        "p99": 2.88,
+        "max": 13.57,
+        "avg": 1.04,
+        "min": 0.68,
+        "med": 0.9,
+        "p90": 1.39,
+        "p95": 1.84
+      },
+      "success_latency_ms": {
+        "avg": 1.04,
+        "min": 0.68,
+        "med": 0.9,
+        "p90": 1.39,
+        "p95": 1.84,
+        "p99": 2.88,
+        "max": 13.57
+      },
+      "responses": {
+        "200": 30001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 20.2,
+          "cpu_max_pct": 27.7,
+          "mem_max_mib": 42
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 33.7,
+          "cpu_max_pct": 59.2,
+          "mem_max_mib": 246
+        },
+        "redis": {
+          "cpu_avg_pct": 4.1,
+          "cpu_max_pct": 5.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.2,
+          "mem_max_mib": 127
+        },
+        "user-service": {
+          "cpu_avg_pct": 11.2,
+          "cpu_max_pct": 21.2,
+          "mem_max_mib": 142
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1000,
+      "requests": 60000,
+      "achieved_rps": 999.9,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 100,
+      "latency_ms": {
+        "avg": 1.2,
+        "min": 0.04,
+        "med": 0.88,
+        "p90": 1.39,
+        "p95": 2.03,
+        "p99": 4.69,
+        "max": 99.94
+      },
+      "success_latency_ms": {
+        "p99": 4.69,
+        "max": 99.94,
+        "avg": 1.2,
+        "min": 0.04,
+        "med": 0.88,
+        "p90": 1.39,
+        "p95": 2.03
+      },
+      "responses": {
+        "200": 60000,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 34.9,
+          "cpu_max_pct": 49.5,
+          "mem_max_mib": 73
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 58.6,
+          "cpu_max_pct": 94.0,
+          "mem_max_mib": 273
+        },
+        "redis": {
+          "cpu_avg_pct": 6.3,
+          "cpu_max_pct": 10.1,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.2,
+          "cpu_max_pct": 2.6,
+          "mem_max_mib": 128
+        },
+        "user-service": {
+          "cpu_avg_pct": 20.1,
+          "cpu_max_pct": 33.4,
+          "mem_max_mib": 148
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 1500,
+      "requests": 90001,
+      "achieved_rps": 1499.9,
+      "failed_rate": 0,
+      "dropped_iterations": 0,
+      "max_vus": 150,
+      "latency_ms": {
+        "min": 0.04,
+        "med": 0.89,
+        "p90": 1.96,
+        "p95": 4.06,
+        "p99": 33.68,
+        "max": 111.4,
+        "avg": 1.92
+      },
+      "success_latency_ms": {
+        "min": 0.04,
+        "med": 0.89,
+        "p90": 1.96,
+        "p95": 4.06,
+        "p99": 33.68,
+        "max": 111.4,
+        "avg": 1.92
+      },
+      "responses": {
+        "200": 90001,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 46.9,
+          "cpu_max_pct": 67.3,
+          "mem_max_mib": 103
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 91.5,
+          "cpu_max_pct": 135.5,
+          "mem_max_mib": 274
+        },
+        "redis": {
+          "cpu_avg_pct": 10.4,
+          "cpu_max_pct": 16.6,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.8,
+          "cpu_max_pct": 4.4,
+          "mem_max_mib": 128
+        },
+        "user-service": {
+          "cpu_avg_pct": 32.9,
+          "cpu_max_pct": 61.1,
+          "mem_max_mib": 157
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 2000,
+      "requests": 119920,
+      "achieved_rps": 1998.6,
+      "failed_rate": 0,
+      "dropped_iterations": 81,
+      "max_vus": 231,
+      "latency_ms": {
+        "avg": 3.53,
+        "min": 0.06,
+        "med": 1.01,
+        "p90": 5.4,
+        "p95": 15.93,
+        "p99": 52.58,
+        "max": 166.21
+      },
+      "success_latency_ms": {
+        "p95": 15.93,
+        "p99": 52.58,
+        "max": 166.21,
+        "avg": 3.53,
+        "min": 0.06,
+        "med": 1.01,
+        "p90": 5.4
+      },
+      "responses": {
+        "200": 119920,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 60.5,
+          "cpu_max_pct": 83.2,
+          "mem_max_mib": 150
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 122.2,
+          "cpu_max_pct": 168.5,
+          "mem_max_mib": 274
+        },
+        "redis": {
+          "cpu_avg_pct": 14.8,
+          "cpu_max_pct": 21.9,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 2.4,
+          "cpu_max_pct": 5.0,
+          "mem_max_mib": 130
+        },
+        "user-service": {
+          "cpu_avg_pct": 43.4,
+          "cpu_max_pct": 62.0,
+          "mem_max_mib": 164
+        }
+      }
+    },
+    {
+      "repeat": 3,
+      "target_rps": 2500,
+      "requests": 149717,
+      "achieved_rps": 2495.1,
+      "failed_rate": 0,
+      "dropped_iterations": 283,
+      "max_vus": 353,
+      "latency_ms": {
+        "max": 283.89,
+        "avg": 7.69,
+        "min": 0.07,
+        "med": 1.24,
+        "p90": 19.7,
+        "p95": 46.78,
+        "p99": 106.39
+      },
+      "success_latency_ms": {
+        "med": 1.24,
+        "p90": 19.7,
+        "p95": 46.78,
+        "p99": 106.39,
+        "max": 283.89,
+        "avg": 7.69,
+        "min": 0.07
+      },
+      "responses": {
+        "200": 149717,
+        "503": 0,
+        "other": 0
+      },
+      "containers": {
+        "k6": {
+          "cpu_avg_pct": 82.9,
+          "cpu_max_pct": 101.9,
+          "mem_max_mib": 210
+        },
+        "gateway-service": {
+          "cpu_avg_pct": 153.2,
+          "cpu_max_pct": 182.8,
+          "mem_max_mib": 281
+        },
+        "redis": {
+          "cpu_avg_pct": 15.2,
+          "cpu_max_pct": 18.0,
+          "mem_max_mib": 4
+        },
+        "payment-service": {
+          "cpu_avg_pct": 0.1,
+          "cpu_max_pct": 0.2,
+          "mem_max_mib": 128
+        },
+        "user-service": {
+          "cpu_avg_pct": 53.9,
+          "cpu_max_pct": 66.8,
+          "mem_max_mib": 172
+        }
+      }
+    }
+  ]
+}

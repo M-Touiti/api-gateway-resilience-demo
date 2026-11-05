@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-10-31T18:21:31+0100",
+  "target_rps": 500,
+  "duration_s": 600,
+  "requests": 291231,
+  "achieved_rps": 485.4,
+  "failed_rate": 0,
+  "dropped_iterations": 8770,
+  "max_vus": 1000,
+  "latency_ms": {
+    "avg": 125.41,
+    "min": -4.44,
+    "med": 1.58,
+    "p90": 6.78,
+    "p95": 962.07,
+    "p99": 2817.18,
+    "max": 4070.14
+  },
+  "containers": {
+    "k6": {
+      "cpu_avg_pct": 44.0,
+      "cpu_max_pct": 343.4,
+      "mem_max_mib": 514
+    },
+    "gateway-service": {
+      "cpu_avg_pct": 73.0,
+      "cpu_max_pct": 246.3,
+      "mem_max_mib": 311
+    },
+    "redis": {
+      "cpu_avg_pct": 9.2,
+      "cpu_max_pct": 64.4,
+      "mem_max_mib": 6
+    },
+    "user-service": {
+      "cpu_avg_pct": 22.6,
+      "cpu_max_pct": 86.0,
+      "mem_max_mib": 206
+    },
+    "payment-service": {
+      "cpu_avg_pct": 2.0,
+      "cpu_max_pct": 71.8,
+      "mem_max_mib": 126
+    }
+  },
+  "heap": [
+    {
+      "t": 15,
+      "heap_mib": 57.1
+    },
+    {
+      "t": 30,
+      "heap_mib": 38.0
+    },
+    {
+      "t": 46,
+      "heap_mib": 46.3
+    },
+    {
+      "t": 61,
+      "heap_mib": 57.2
+    },
+    {
+      "t": 76,
+      "heap_mib": 44.3
+    },
+    {
+      "t": 91,
+      "heap_mib": 50.4
+    },
+    {
+      "t": 107,
+      "heap_mib": 55.4
+    },
+    {
+      "t": 122,
+      "heap_mib": 31.7
+    },
+    {
+      "t": 137,
+      "heap_mib": 40.9
+    },
+    {
+      "t": 152,
+      "heap_mib": 45.0
+    },
+    {
+      "t": 167,
+      "heap_mib": 42.6
+    },
+    {
+      "t": 182,
+      "heap_mib": 43.9
+    },
+    {
+      "t": 198,
+      "heap_mib": 76.4
+    },
+    {
+      "t": 213,
+      "heap_mib": 68.3
+    },
+    {
+      "t": 228,
+      "heap_mib": 87.9
+    },
+    {
+      "t": 244,
+      "heap_mib": 68.0
+    },
+    {
+      "t": 260,
+      "heap_mib": 105.5
+    },
+    {
+      "t": 275,
+      "heap_mib": 63.3
+    },
+    {
+      "t": 293,
+      "heap_mib": 88.2
+    },
+    {
+      "t": 308,
+      "heap_mib": 46.7
+    },
+    {
+      "t": 324,
+      "heap_mib": 55.6
+    },
+    {
+      "t": 339,
+      "heap_mib": 39.8
+    },
+    {
+      "t": 356,
+      "heap_mib": 44.5
+    },
+    {
+      "t": 371,
+      "heap_mib": 86.7
+    },
+    {
+      "t": 387,
+      "heap_mib": 70.7
+    },
+    {
+      "t": 402,
+      "heap_mib": 65.8
+    },
+    {
+      "t": 417,
+      "heap_mib": 75.6
+    },
+    {
+      "t": 432,
+      "heap_mib": 85.2
+    },
+    {
+      "t": 447,
+      "heap_mib": 91.3
+    },
+    {
+      "t": 463,
+      "heap_mib": 71.9
+    },
+    {
+      "t": 478,
+      "heap_mib": 104.4
+    },
+    {
+      "t": 493,
+      "heap_mib": 80.6
+    },
+    {
+      "t": 510,
+      "heap_mib": 83.5
+    },
+    {
+      "t": 525,
+      "heap_mib": 69.8
+    },
+    {
+      "t": 540,
+      "heap_mib": 77.4
+    },
+    {
+      "t": 555,
+      "heap_mib": 83.6
+    },
+    {
+      "t": 571,
+      "heap_mib": 88.5
+    },
+    {
+      "t": 586,
+      "heap_mib": 94.3
+    },
+    {
+      "t": 601,
+      "heap_mib": 91.4
+    }
+  ],
+  "gc": {
+    "end of major GC": {
+      "count": 21,
+      "seconds": 5.631
+    },
+    "end of minor GC": {
+      "count": 2415,
+      "seconds": 18.293
+    }
+  }
+}

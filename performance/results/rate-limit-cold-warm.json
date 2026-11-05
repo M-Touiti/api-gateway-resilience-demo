@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-11-02T10:45:47+0100",
+  "route": "payments",
+  "duration_s": 20,
+  "runs": [
+    {
+      "repeat": 1,
+      "state": "cold",
+      "expected_allowed": 220,
+      "allowed": 216,
+      "limited": 3756,
+      "other": 0
+    },
+    {
+      "repeat": 1,
+      "state": "warm",
+      "expected_allowed": 220,
+      "allowed": 220,
+      "limited": 3781,
+      "other": 0
+    },
+    {
+      "repeat": 2,
+      "state": "cold",
+      "expected_allowed": 220,
+      "allowed": 231,
+      "limited": 3744,
+      "other": 0
+    },
+    {
+      "repeat": 2,
+      "state": "warm",
+      "expected_allowed": 220,
+      "allowed": 220,
+      "limited": 3781,
+      "other": 0
+    },
+    {
+      "repeat": 3,
+      "state": "cold",
+      "expected_allowed": 220,
+      "allowed": 228,
+      "limited": 3731,
+      "other": 0
+    },
+    {
+      "repeat": 3,
+      "state": "warm",
+      "expected_allowed": 220,
+      "allowed": 220,
+      "limited": 3781,
+      "other": 0
+    }
+  ]
+}

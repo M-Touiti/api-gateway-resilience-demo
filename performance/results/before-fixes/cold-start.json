@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-10-31T18:09:41+0100",
+  "runs": [
+    {
+      "repeat": 1,
+      "minute": 1,
+      "target_rps": 300,
+      "requests": 14887,
+      "achieved_rps": 248.1,
+      "failed_rate": 0.00013,
+      "dropped_iterations": 3113,
+      "max_vus": 600,
+      "latency_ms": {
+        "min": 0.19,
+        "med": 3.96,
+        "p90": 2974.09,
+        "p95": 3808.13,
+        "p99": 7335.94,
+        "max": 9999.33,
+        "avg": 858.25
+      }
+    },
+    {
+      "repeat": 1,
+      "minute": 2,
+      "target_rps": 300,
+      "requests": 17946,
+      "achieved_rps": 299.0,
+      "failed_rate": 0,
+      "dropped_iterations": 55,
+      "max_vus": 73,
+      "latency_ms": {
+        "med": 1.5,
+        "p90": 4.44,
+        "p95": 6.3,
+        "p99": 21.57,
+        "max": 413.07,
+        "avg": 3.87,
+        "min": 0.2
+      }
+    },
+    {
+      "repeat": 1,
+      "minute": 3,
+      "target_rps": 300,
+      "requests": 17840,
+      "achieved_rps": 297.3,
+      "failed_rate": 0,
+      "dropped_iterations": 160,
+      "max_vus": 140,
+      "latency_ms": {
+        "p90": 4.79,
+        "p95": 9.4,
+        "p99": 449.04,
+        "max": 751.85,
+        "avg": 13.25,
+        "min": 0.18,
+        "med": 1.5
+      }
+    },
+    {
+      "repeat": 1,
+      "minute": 4,
+      "target_rps": 300,
+      "requests": 17687,
+      "achieved_rps": 294.7,
+      "failed_rate": 0,
+      "dropped_iterations": 313,
+      "max_vus": 187,
+      "latency_ms": {
+        "p90": 6.42,
+        "p95": 136.22,
+        "p99": 686.39,
+        "max": 1399.42,
+        "avg": 26.66,
+        "min": 0.7,
+        "med": 1.82
+      }
+    },
+    {
+      "repeat": 2,
+      "minute": 1,
+      "target_rps": 300,
+      "requests": 16533,
+      "achieved_rps": 275.5,
+      "failed_rate": 0,
+      "dropped_iterations": 1467,
+      "max_vus": 600,
+      "latency_ms": {
+        "p90": 2048.21,
+        "p95": 3145.94,
+        "p99": 4307.18,
+        "max": 5399.28,
+        "avg": 596.8,
+        "min": 1.01,
+        "med": 3.22
+      }
+    },
+    {
+      "repeat": 2,
+      "minute": 2,
+      "target_rps": 300,
+      "requests": 17667,
+      "achieved_rps": 294.4,
+      "failed_rate": 0,
+      "dropped_iterations": 333,
+      "max_vus": 177,
+      "latency_ms": {
+        "avg": 17.08,
+        "min": 0.27,
+        "med": 1.71,
+        "p90": 4.67,
+        "p95": 7.33,
+        "p99": 676.2,
+        "max": 1633.91
+      }
+    },
+    {
+      "repeat": 2,
+      "minute": 3,
+      "target_rps": 300,
+      "requests": 17193,
+      "achieved_rps": 286.5,
+      "failed_rate": 0,
+      "dropped_iterations": 808,
+      "max_vus": 281,
+      "latency_ms": {
+        "med": 1.76,
+        "p90": 29.11,
+        "p95": 355.6,
+        "p99": 1590.03,
+        "max": 2902.66,
+        "avg": 63.89,
+        "min": 0.17
+      }
+    },
+    {
+      "repeat": 2,
+      "minute": 4,
+      "target_rps": 300,
+      "requests": 17613,
+      "achieved_rps": 293.5,
+      "failed_rate": 0,
+      "dropped_iterations": 387,
+      "max_vus": 181,
+      "latency_ms": {
+        "med": 1.77,
+        "p90": 5.61,
+        "p95": 52.98,
+        "p99": 675.71,
+        "max": 1476.72,
+        "avg": 24.14,
+        "min": 0.27
+      }
+    },
+    {
+      "repeat": 3,
+      "minute": 1,
+      "target_rps": 300,
+      "requests": 16050,
+      "achieved_rps": 267.5,
+      "failed_rate": 0,
+      "dropped_iterations": 1950,
+      "max_vus": 600,
+      "latency_ms": {
+        "avg": 616.98,
+        "min": 1.04,
+        "med": 3.48,
+        "p90": 2600.19,
+        "p95": 3263.58,
+        "p99": 5066.57,
+        "max": 6556.24
+      }
+    },
+    {
+      "repeat": 3,
+      "minute": 2,
+      "target_rps": 300,
+      "requests": 17859,
+      "achieved_rps": 297.6,
+      "failed_rate": 0,
+      "dropped_iterations": 142,
+      "max_vus": 125,
+      "latency_ms": {
+        "avg": 10.23,
+        "min": 0.18,
+        "med": 1.5,
+        "p90": 4.36,
+        "p95": 7.24,
+        "p99": 360.99,
+        "max": 672.31
+      }
+    },
+    {
+      "repeat": 3,
+      "minute": 3,
+      "target_rps": 300,
+      "requests": 17934,
+      "achieved_rps": 298.9,
+      "failed_rate": 0,
+      "dropped_iterations": 67,
+      "max_vus": 90,
+      "latency_ms": {
+        "p90": 4.06,
+        "p95": 6.29,
+        "p99": 88.89,
+        "max": 614.32,
+        "avg": 5.04,
+        "min": 0.56,
+        "med": 1.44
+      }
+    },
+    {
+      "repeat": 3,
+      "minute": 4,
+      "target_rps": 300,
+      "requests": 17786,
+      "achieved_rps": 296.4,
+      "failed_rate": 0,
+      "dropped_iterations": 214,
+      "max_vus": 138,
+      "latency_ms": {
+        "p99": 382.11,
+        "max": 967.68,
+        "avg": 12.91,
+        "min": 0.71,
+        "med": 1.45,
+        "p90": 4.62,
+        "p95": 8.91
+      }
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "generated_at": "2026-10-31T21:13:28+0100",
+  "profile": "shipped",
+  "settings": {
+    "GW_LOG_LEVEL": "INFO",
+    "GW_JAVA_OPTS": ""
+  },
+  "target_rps": 500,
+  "duration_s": 600,
+  "requests": 298653,
+  "achieved_rps": 497.8,
+  "failed_rate": 0,
+  "dropped_iterations": 1347,
+  "max_vus": 222,
+  "latency_ms": {
+    "avg": 2.3,
+    "min": -0.77,
+    "med": 1.18,
+    "p90": 2.21,
+    "p95": 2.79,
+    "p99": 5.55,
+    "max": 1870.22
+  },
+  "containers": {
+    "k6": {
+      "cpu_avg_pct": 28.5,
+      "cpu_max_pct": 183.6,
+      "mem_max_mib": 163
+    },
+    "gateway-service": {
+      "cpu_avg_pct": 53.4,
+      "cpu_max_pct": 190.2,
+      "mem_max_mib": 327
+    },
+    "redis": {
+      "cpu_avg_pct": 6.9,
+      "cpu_max_pct": 65.2,
+      "mem_max_mib": 11
+    },
+    "user-service": {
+      "cpu_avg_pct": 15.3,
+      "cpu_max_pct": 88.8,
+      "mem_max_mib": 190
+    },
+    "payment-service": {
+      "cpu_avg_pct": 1.4,
+      "cpu_max_pct": 63.7,
+      "mem_max_mib": 142
+    }
+  },
+  "heap": [
+    {
+      "t": 15,
+      "heap_mib": 74.1
+    },
+    {
+      "t": 30,
+      "heap_mib": 76.0
+    },
+    {
+      "t": 45,
+      "heap_mib": 92.7
+    },
+    {
+      "t": 61,
+      "heap_mib": 75.8
+    },
+    {
+      "t": 76,
+      "heap_mib": 85.1
+    },
+    {
+      "t": 91,
+      "heap_mib": 75.0
+    },
+    {
+      "t": 106,
+      "heap_mib": 89.8
+    },
+    {
+      "t": 121,
+      "heap_mib": 73.1
+    },
+    {
+      "t": 136,
+      "heap_mib": 81.5
+    },
+    {
+      "t": 152,
+      "heap_mib": 67.9
+    },
+    {
+      "t": 167,
+      "heap_mib": 76.3
+    },
+    {
+      "t": 182,
+      "heap_mib": 87.4
+    },
+    {
+      "t": 197,
+      "heap_mib": 69.4
+    },
+    {
+      "t": 212,
+      "heap_mib": 78.6
+    },
+    {
+      "t": 227,
+      "heap_mib": 87.3
+    },
+    {
+      "t": 243,
+      "heap_mib": 68.8
+    },
+    {
+      "t": 258,
+      "heap_mib": 77.7
+    },
+    {
+      "t": 273,
+      "heap_mib": 85.3
+    },
+    {
+      "t": 288,
+      "heap_mib": 88.0
+    },
+    {
+      "t": 303,
+      "heap_mib": 73.1
+    },
+    {
+      "t": 318,
+      "heap_mib": 85.7
+    },
+    {
+      "t": 333,
+      "heap_mib": 73.8
+    },
+    {
+      "t": 349,
+      "heap_mib": 81.6
+    },
+    {
+      "t": 364,
+      "heap_mib": 90.0
+    },
+    {
+      "t": 379,
+      "heap_mib": 72.2
+    },
+    {
+      "t": 394,
+      "heap_mib": 83.3
+    },
+    {
+      "t": 409,
+      "heap_mib": 92.2
+    },
+    {
+      "t": 424,
+      "heap_mib": 73.5
+    },
+    {
+      "t": 439,
+      "heap_mib": 83.1
+    },
+    {
+      "t": 455,
+      "heap_mib": 93.0
+    },
+    {
+      "t": 470,
+      "heap_mib": 73.9
+    },
+    {
+      "t": 485,
+      "heap_mib": 85.6
+    },
+    {
+      "t": 500,
+      "heap_mib": 92.3
+    },
+    {
+      "t": 515,
+      "heap_mib": 75.6
+    },
+    {
+      "t": 530,
+      "heap_mib": 85.7
+    },
+    {
+      "t": 545,
+      "heap_mib": 92.4
+    },
+    {
+      "t": 561,
+      "heap_mib": 43.0
+    },
+    {
+      "t": 576,
+      "heap_mib": 52.6
+    },
+    {
+      "t": 591,
+      "heap_mib": 35.6
+    }
+  ],
+  "gc": {
+    "end of major GC": {
+      "count": 7,
+      "seconds": 1.929
+    },
+    "end of minor GC": {
+      "count": 2551,
+      "seconds": 7.492
+    }
+  },
+  "cpu_throttling": {
+    "nr_periods": 5991,
+    "nr_throttled": 31,
+    "throttled_usec": 5421727
+  }
+}
