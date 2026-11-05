@@ -1,8 +1,8 @@
 # api-gateway-resilience-demo
 
-A production-grade API Gateway built with Spring Cloud Gateway, implementing Circuit Breaker, Rate Limiting, Retry, and JWT authentication — demonstrating resilience patterns for distributed microservices architectures.
+An API Gateway built with Spring Cloud Gateway, implementing Circuit Breaker, Rate Limiting, Retry, Load Shedding, and JWT authentication — demonstrating resilience patterns for distributed microservices architectures.
 
-Built as a project to showcase enterprise-grade distributed systems design applicable to fintech, e-commerce, and cloud-native platforms.
+This is a portfolio project that uses stub downstream services and placeholder logins. Its behaviour under load and failure is [measured and published](performance/README.md), including its open issues.
 
 [![CI](https://github.com/M-Touiti/api-gateway-resilience-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/M-Touiti/api-gateway-resilience-demo/actions/workflows/ci.yml)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
@@ -19,15 +19,16 @@ graph TD
 
     subgraph gw["API Gateway — port 8080"]
         direction TB
-        F1["① RequestLoggingFilter<br/>Global — logs method, path, latency"]
+        F0["ConcurrencyLimitFilter<br/>Global — 503 above 512 requests in flight per route"]
+        F1["① RequestLoggingFilter<br/>Global — logs 5xx responses, and all requests at DEBUG"]
         F2["② JwtAuthentication<br/>validates Bearer token · injects X-User-Email, X-User-Role"]
         F3["③ RedisRateLimiter<br/>token bucket per user (50/10 req/s) or per IP (20 req/s)"]
         F4["④ CircuitBreaker — Resilience4j<br/>CLOSED → OPEN at 50% failure (30% for payments)"]
-        F5["⑤ Retry<br/>exponential backoff · 502/503 · GET+POST (auth), GET only (payments) · max 3 attempts"]
-        F1 --> F2 --> F3 --> F4 --> F5
+        F5["⑤ Retry<br/>exponential backoff · statuses vary by route · GET+POST (auth), GET only (users, payments) · max 3 retries"]
+        F0 --> F1 --> F2 --> F3 --> F4 --> F5
     end
 
-    Client -->|"HTTP :8080"| F1
+    Client -->|"HTTP :8080"| F0
     F3 <-->|"token bucket<br/>Lua script"| R[("Redis :6379")]
     F4 -->|"circuit OPEN<br/>or timeout"| FB["FallbackController<br/>503 degraded response"]
     F5 -->|"/api/v1/users/**"| US["User Service :8081"]
@@ -73,12 +74,15 @@ The gateway combines global filters (always active) and route-specific filters i
 GET /api/v1/users/me  →  localhost:8080
         │
         ▼
-RequestLoggingFilter          [GlobalFilter] logs method, path, start time
+ConcurrencyLimitFilter        [GlobalFilter] 503 if this route has 512 requests in flight
+        │
+        ▼
+RequestLoggingFilter          [GlobalFilter] records start time, logs the request at DEBUG
         │
         ▼
 JwtAuthenticationGatewayFilterFactory  [per-route]
         │  reads Authorization: Bearer <token>
-        │  calls JwtUtil.isValid() → verifies HMAC-SHA256 signature
+        │  calls JwtUtil.parseClaims() → verifies HMAC-SHA256 signature
         │  extracts email + role from claims
         │  mutates request: adds X-User-Email, X-User-Role, removes Authorization
         │  stores userEmail as exchange attribute (used by rate limiter below)
@@ -114,7 +118,7 @@ user-service  :8081
         │  returns 200 {"email":"user@example.com","role":"USER",...}
         │
         ▼  (response flows back up the chain)
-RequestLoggingFilter logs status + latency
+RequestLoggingFilter logs status + latency (5xx at ERROR, others at DEBUG)
         │
         ▼
 200 response → caller
@@ -138,7 +142,7 @@ spring.data.redis.host: ${REDIS_HOST:localhost}
 spring.data.redis.port: ${REDIS_PORT:6379}
 ```
 
-If Redis is unreachable, `RedisRateLimiter` catches the error and **fails open** (allows all requests through) to avoid a Redis outage taking down the entire gateway.
+If Redis is unreachable, `RedisRateLimiter` catches the error and **fails open** (allows requests through), so rate limits aren't enforced until Redis returns. The client is configured to fail fast, so this adds very little latency and memory: with Redis killed, frozen or absent at startup, a gateway with a 256 MB heap had no failed requests in load tests. See the [Redis outage results](performance/README.md#redis-outage).
 
 ### 4. Docker networking
 
@@ -152,7 +156,7 @@ You ──► localhost:8080 (gateway, public)
               └──► redis:6379 (internal Docker network only)
 ```
 
-> **Note:** In this demo, `user-service` and `payment-service` also expose ports `8081`/`8082` to the host for convenience, meaning you can call them directly and bypass the gateway entirely. In production, remove those `ports:` mappings so only the gateway is publicly accessible.
+> **Note:** In this demo, `user-service`, `payment-service` and Redis also expose ports `8081`/`8082`/`6379` to the host for convenience, meaning you can call them directly and bypass the gateway entirely. In production, remove those `ports:` mappings so only the gateway is publicly accessible.
 
 ---
 
@@ -191,13 +195,16 @@ stateDiagram-v2
 
 Returns `429 Too Many Requests` with `X-RateLimit-*` headers when exceeded.
 
+The per-IP key uses the connection's address. `X-Forwarded-For` is ignored because any client can set it, unless `TRUSTED_PROXY_HOPS` says how many proxies in front of the gateway add to it.
+
 ### 3. Retry with Exponential Backoff
 
 ```
 Attempt 1 ─── fail ─► wait 100ms ─► Attempt 2 ─── fail ─► wait 200ms ─► Attempt 3
 ```
 
-- Only retries on `502 Bad Gateway`, `503 Service Unavailable`, `504 Gateway Timeout`
+- Only retries on `502 Bad Gateway`, `503 Service Unavailable`, `504 Gateway Timeout`, with the exact set varying by route
+- Retries `GET` on all routes, and `POST` on the auth route only
 - `POST /payments` is **never retried** (idempotency — avoid double charges)
 
 ### 4. JWT Authentication Filter
@@ -208,13 +215,40 @@ Attempt 1 ─── fail ─► wait 100ms ─► Attempt 2 ─── fail ─�
 - Removes `Authorization` header (JWT not forwarded downstream)
 - Sets `userEmail` attribute for rate limiter key resolver
 
+### 5. Load Shedding
+
+- Once a route has 512 requests in flight (`MAX_CONCURRENT_REQUESTS_PER_ROUTE`), new ones get a `503` with `Retry-After: 1`, without any JWT, Redis or downstream work
+- The limit is per route, so a hung dependency doesn't use up other routes' allowance
+- Shed requests are counted in the `gateway.requests.shed` metric
+- Under heavy overload, successful requests were about 3 times faster, but 4% to 21% fewer got through. The [overload results](performance/README.md#overload-and-load-shedding) and [ADR-0006](docs/adr/0006-per-route-load-shedding.md) give the details
+
+---
+
+## Performance
+
+Load tested with k6 in an open model, with each gateway limited to 2 CPUs. Results come from one laptop, so they're useful for comparison rather than as production capacity figures. **[Full report, charts and raw results](performance/README.md)**
+
+| Measure | Result |
+|---|---|
+| Throughput | About 2,000 req/s on 1 gateway and 4,000 req/s on 2, with no failed requests |
+| p95 latency on 1 gateway | 2.5 ms at 1,000 req/s, 6.6 ms at 2,000 and 166 ms at 2,500 |
+| Added latency at 500 req/s | About 0.4 ms at p50 and 1.1 ms at p95 |
+| Overload (up to 5,000 req/s on 1 gateway) | Load shedding made successful requests about 3 times faster, with 4% to 21% fewer of them |
+| Redis killed, frozen or absent at startup (256 MB heap) | No failed requests, and limits enforced again once it returns |
+| Rate limit accuracy across 2 gateways | 3,092 admitted, against a theoretical 3,100 |
+| Downstream killed under load | Breaker open in about 5 s, fallback at about 1.3 ms, other route still serving all requests |
+| Recovery after downstream restart | About 11 s, with no intervention |
+| Latency at 500 req/s | Slowest request of 92 ms across nine 10-minute runs |
+
+The tests found defects that have since been fixed, including the gateway failing during a Redis outage with a small heap and a rate limit bypass through `X-Forwarded-For`. The whole suite was then rerun on the fixed code. Some questions remain open: one payments rate-limit run admitted 8% too many requests, and the cause of the earlier latency stalls was never established, though they didn't return. The [report's findings](performance/README.md#findings-and-fixes) give the status of each.
+
 ---
 
 ## Tech Stack
 
 - **Java 21** — Records, modern idioms
 - **Spring Cloud Gateway 4.x** — Reactive (WebFlux) API gateway
-- **Spring Cloud Circuit Breaker + Resilience4j** — Reactive circuit breaker, retry, bulkhead
+- **Spring Cloud Circuit Breaker + Resilience4j** — Reactive circuit breaker and time limiter
 - **Spring Data Redis Reactive** — Distributed rate limiting
 - **JJWT 0.12** — JWT validation in gateway filter
 - **Micrometer + Prometheus** — Circuit breaker metrics, latency histograms
@@ -239,7 +273,7 @@ cd api-gateway-resilience-demo
 # 2. Build all services
 mvn clean package -DskipTests
 
-# 3. Start everything (Redis + 2 services + gateway)
+# 3. Start everything (Redis + 2 services + gateway + monitoring)
 docker-compose up -d
 
 # 4. Check gateway health
@@ -259,7 +293,7 @@ curl http://localhost:8080/actuator/health
 ### Run tests
 
 ```bash
-# Unit tests (JwtUtil — no infrastructure)
+# Unit tests (no infrastructure)
 mvn test -pl gateway-service -Dtest="**/unit/**"
 
 # Integration tests (WireMock — no real services needed)
@@ -374,7 +408,8 @@ curl http://localhost:8080/api/v1/users/slow \
 ## Actuator Endpoints
 
 ```
-GET /actuator/health              → overall health + circuit breaker states
+GET /actuator/health              → overall health + circuit breaker states (DOWN while Redis is down)
+GET /actuator/health/readiness    → whether to send traffic (doesn't depend on Redis)
 GET /actuator/circuitbreakers     → all CB states (CLOSED/OPEN/HALF_OPEN)
 GET /actuator/metrics             → all metrics
 GET /actuator/prometheus          → Prometheus scrape endpoint
@@ -384,6 +419,8 @@ GET /actuator/gateway/routes      → all configured gateway routes
 ---
 
 ## Design Decisions
+
+The full reasoning and trade-offs are in the [Architecture Decision Records](docs/adr/README.md).
 
 **Why WebFlux (reactive) for the gateway?**
 Spring Cloud Gateway is built on WebFlux and Netty. Reactive I/O allows the gateway to handle thousands of concurrent connections with a small thread pool, essential for a component that proxies every request in the system.
@@ -395,7 +432,7 @@ In-memory rate limiters don't work in multi-instance deployments — each instan
 Payment failures are more critical than user-service failures — a partial failure might indicate fraud, infrastructure issues, or data corruption. Opening the circuit faster (30% vs 50%) and keeping it open longer (30s vs 10s) prevents cascading damage.
 
 **Why not retry POST /payments?**
-Retrying a payment POST risks double charges. Only idempotent methods (GET) are retried. For payments, the client must handle failures explicitly.
+Retrying a payment POST risks double charges, so payments and users retry GET only, and the client must handle failed payments explicitly. The auth route is the exception and does retry POST, which [ADR-0004](docs/adr/0004-retry-only-idempotent-requests.md) records as an open follow-up.
 
 ---
 
